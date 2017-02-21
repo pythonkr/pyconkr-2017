@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load i18n humanize %}
+{% load thumbnail %}
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+
+{% block content %}
+<div>
+    <table class='table table-striped table-bordered'>
+        <tr>
+            <th>Name</th> <td>{{ request.user.profile.name  }}</td>
+        </tr>
+        <tr>
+            <th>Ticket Type</th> <td>PyConAPAC 2016 - {{ registration.option.name }}</td>
+        </tr>
+        <tr>
+            <th>Price</th> <td>{{ registration.option.price|add:registration.additional_price|intcomma }}</td>
+        </tr>
+        <tr>
+            <th>Provider</th> <td>Python Korea Inc.</br>Chair man. Kwon-Han, Bae</br>
+                <img src="{% static 'stamp.jpg' %}">
+            </td>
+        </tr>
+        <tr>
+            <th>Provider Company Number</th> <td>338-82-00046</td>
+        </tr>
+    </table>
+</div>
+{% endblock %}
+

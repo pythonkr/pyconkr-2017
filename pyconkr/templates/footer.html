@@ -1,0 +1,41 @@
+{% load staticfiles %}
+{% load i18n %}
+<div class="footer">
+    <div class="container">
+        <div class="row wrap">
+            <div class="col col-sm-2 pyconkr-badge">
+                <img src="{% static "image/pyconkr-badge.png" %}" alt="PyCon Korea badge">
+            </div>
+            <div class="col col-sm-7 credit">
+                <h4>
+                {% trans "Respect, Diversity at PyCon APAC 2016" %}
+                </h4>
+                <p>
+                {% trans "PyCon APAC 2016 is a product of PyCon Korea Organizing Team" %}
+                </p>
+                <p>
+                {% trans "Powered by Django" %}
+                </p>
+                <p>
+                  {% trans "Hosted on Naver D2" %}
+                  <img class="hosting" src="{% static "image/naver-d2.png" %}" alt="Hosted on Naver D2">
+                </p>
+            </div>
+            <div class="col col-sm-3 info">
+                <h4>{% trans "Stay connected" %}</h4>
+                <a class="btn btn-social-icon btn-twitter" href="https://twitter.com/pyconkr">
+                    <i class="fa fa-twitter"></i>
+                </a>
+                <a class="btn btn-social-icon btn-facebook" href="https://facebook.com/pyconkorea">
+                    <i class="fa fa-facebook"></i>
+                </a>
+                <a class="btn btn-social-icon btn-github" href="https://github.com/pythonkr/pyconapac-2016">
+                    <i class="fa fa-github"></i>
+                </a>
+                <a class="btn btn-social-icon btn-flickr" href="https://www.flickr.com/photos/126829363@N08/sets/">
+                    <i class="fa fa-flickr"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

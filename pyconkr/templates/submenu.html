@@ -1,0 +1,5 @@
+<div class="submenu list-group hidden-xs hidden-sm">
+{% for k, v in submenu.items %}
+<a href="{{ v.path }}" class="list-group-item{% if v.active %} active{% endif %}">{{ v.title }}</a>
+{% endfor %}
+</div>

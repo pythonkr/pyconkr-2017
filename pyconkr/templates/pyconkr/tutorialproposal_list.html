@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+{% if show_propose_button %}
+<a href="{% url "tutorial-propose" %}" class="btn btn-primary">
+    <span class="glyphicon glyphicon-plus"></span> {% trans "Propose a tutorial" %}
+</a>
+{% endif %}
+<ul>
+  {% for tutorial in object_list %}
+  <li>
+    <span class="label label-info">{{ tutorial.get_type_display }}</span>
+    <a href="{{ tutorial.get_absolute_url }}">{{ tutorial.title }}</a>
+    {% if tutorial.id in joined_tutorials %}
+    <span class="badge">{% trans "Joined" %}</span>
+    {% endif %}
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}

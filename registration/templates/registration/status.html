@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% load i18n humanize %}
+
+{% block content %}
+    <div>
+        <h3>{% trans "Registration status" %}</h3>
+        {% if registration.payment_status == 'paid' %}
+            <div>{% trans "Registration is completed" %}</div>
+            <div>
+                <p>{% trans "Your registration is completed without any problems" %}</p>
+            </div>
+            <table class="table table-striped table-bordered">
+                <tr>
+                    <th>{% trans "Name" %}</th>
+                    <td>{{ registration.name }}</td>
+                </tr>
+                <tr>
+                    <th>{% trans "E-mail" %}</th>
+                    <td>{{ registration.email }}</td>
+                </tr>
+                <tr>
+                    <th>{% trans "Company or Organization" %}</th>
+                    <td>{{ registration.company }}</td>
+                </tr>
+                <tr>
+                    <th>{% trans "Phone number" %}</th>
+                    <td>{{ registration.phone_number }}</td>
+                </tr>
+                <tr>
+                    <th>{% trans "Option" %}</th>
+                    <td>{{ registration.option }}</td>
+                </tr>
+                <tr>
+                    <th>{% trans "Price" %}</th>
+                    <td>{{ registration.option.price|intcomma }} KRW</td>
+                </tr>
+                {% if registration.additional_price != 0 %}
+                    <tr>
+                        <th>{% trans "Additional Funding" %}</th>
+                        <td>{{ registration.additional_price|intcomma }} KRW</td>
+                    </tr>
+                {% endif %}
+                <tr>
+                    <th>{% trans "Transaction ID" %}</th>
+                    <td>{{ registration.merchant_uid }}</td>
+                </tr>
+                <tr>
+                    <th>{% trans "Registration datetime" %}</th>
+                    <td>{{ registration.modified }}</td>
+                </tr>
+            </table>
+
+            <p><a href="{% url 'registration_receipt' %}">{% trans "Check Registration Receipt" %}</a></p>
+        {% elif registration.payment_status == 'ready' %}
+            <div>
+                <h3>{% trans "Payment Information" %}</h3>
+                <table class="table table-striped table-bordered">
+                    <tr>
+                        <th>{% trans "Name" %}</th>
+                        <td>{{ registration.name }}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans "E-mail" %}</th>
+                        <td>{{ registration.email }}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans "Price" %}</th>
+                        <td>{{ registration.option.price|intcomma }} KRW</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans "Transaction ID" %}</th>
+                        <td>{{ registration.merchant_uid }}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans "Bank to transfer" %}</th>
+                        <td>{{ registration.vbank_name }}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans "Account number to transafer" %}</th>
+                        <td>{{ registration.vbank_num }}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans "Account owner name" %}</th>
+                        <td>주식회사 시옷</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans "Payment deadline" %}</th>
+                        <td>{{ registration.vbank_date }}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans "Payment check" %}</th>
+                        <td>
+                            {% if registration.payment_status == 'ready' %}
+                                {% trans "Not checked yet" %}
+                            {% elif registration.payment_status == 'paid' %}
+                                {% trans "Payment checked" %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        {% else %}
+            <div>{% trans "There is no registration record" %}</div>
+            <div>
+                <p></p>
+                <a href="{% url 'registration_payment' %}">{% trans "Registration" %}</a>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

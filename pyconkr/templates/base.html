@@ -1,0 +1,92 @@
+{% load staticfiles %}
+{% load i18n %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>{% block head-title %}{% trans "PyCon APAC 2016" %}{% endblock %}</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=0.85">
+
+  <!-- Opengraph tag -->
+  <meta property="og:site_name" content="{% trans "PyCon APAC 2016" %}">
+  <meta property="og:title" content="{% block og-title %}{% trans "PyCon APAC 2016" %}{% endblock %}">
+  <meta property="og:image" content="{{ domain }}{% block og-image %}{% static "image/pyconkr-2016-tag.jpg" %}{% endblock %}">
+  <meta property="og:url" content="{{ domain }}{{ request.path }}">
+  <meta property="og:description" content="{% block og-desc %}{% trans "PyCon Korea Opengraph Description" %}{% endblock %}">
+
+  <!-- Include basic items -->
+  <link href="{% static "components/bootstrap/dist/css/bootstrap.min.css" %}" rel="stylesheet">
+  <link href="{% static "components/bootstrap-social/bootstrap-social.css" %}" rel="stylesheet">
+  <link href="{% static "components/font-awesome/css/font-awesome.min.css" %}" rel="stylesheet">
+
+  <!-- Override bootstrap css -->
+  <link href="{% static "css/pyconkr.css" %}" rel="stylesheet">
+  <link href="{% static "css/pyconkr-media.css" %}" rel="stylesheet">
+
+  <!-- Google fonts -->
+  <link href='//fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+  <link href='//fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link href='//fonts.googleapis.com/earlyaccess/nanumgothic.css' rel='stylesheet' type='text/css'>
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="{% static "image/favicon.ico" %}" type="image/x-icon">
+  <link rel="icon" href="{% static "image/favicon.ico" %}" type="image/x-icon">
+
+  <!-- Scripts -->
+  <!--[if lt IE 9]>
+    <script src="{% static "components/html5shiv/dist/html5shiv.min.js" %}"></script>
+    <script src="{% static "components/respond/dest/respond.min.js" %}"></script>
+  <![endif]-->
+  <script src="{% static "components/jquery/jquery.min.js" %}"></script>
+  <script src="{% static "components/bootstrap/dist/js/bootstrap.min.js" %}"></script>
+  <script src="{% static "js/rgb-hsv.js" %}"></script>
+  {% block head-include %}{% endblock %}
+</head>
+
+<body>
+{% block nav %}{% include "nav.html" %}{% endblock %}
+{% block container %}
+<div class="container">
+    {% block wrap %}
+    <div class="row wrap">
+        <div class="col-md-9 content">
+            <h1>{% block title %}{{ title }}{% endblock %}</h1>
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert{% if message.tags %} alert-{{ message.tags }}{% endif %}" role="alert">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% endif %}
+            {{ base_content | safe }}
+            {% block content %}{% endblock %}
+        </div>
+        <div class="col-md-3">
+            {% include "submenu.html" %}
+            {% include "banner.html" %}
+        </div>
+    </div>
+    {% endblock %}
+    {% block sponsors %}
+    <hr>
+    <div class="row wrap">
+        <div class="col-md-12 sponsors">
+        <h2>{% trans "Sponsors" %}</h2>
+        {% include "sponsors.html" %}
+        </div>
+    </div>
+    {% endblock %}
+</div>
+{% endblock %}
+
+{% block script %}
+{% endblock %}
+
+{% include "footer.html" %}
+{% include "ga.html" %}
+{% include "facebook_script.html" %}
+</body>
+
+</html>

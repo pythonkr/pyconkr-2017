@@ -1,0 +1,35 @@
+{% extends "admin/base_site.html" %}
+{% load i18n l10n %}
+{% load admin_urls %}
+
+{% block content %}
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>이름</th>
+      <th>이메일</th>
+      <th>옵션</th>
+      <th>Merchant UID</th>
+      <th>취소 여부</th>
+      <th>비고</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for obj in results %}
+    <tr>
+      <td>{{ obj.id }}</td>
+      <td>{{ obj.name }}</td>
+      <td>{{ obj.email }}</td>
+      <td>{{ obj.option }}</td>
+      <td>{{ obj.merchant_uid }}</td>
+      <td>{{ obj.cancel_status }}</td>
+      <td>{{ obj.cancel_reason }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+<p>
+<a href="{% url 'admin:registration_registration_changelist' %}">Back to list</a>
+</p>
+{% endblock %}

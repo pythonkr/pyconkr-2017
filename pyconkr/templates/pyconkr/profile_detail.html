@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load thumbnail %}
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="row profile-detail">
+    {% if profile.name %}
+        <div class="row">
+            <div class="col-md-5">
+                {% if profile.image %}
+                    <img src="/media/{{ profile.image }}" width="300">
+                {% else %}
+                    <img src="{% static 'image/pycon_profile.png' %}" width="300">
+                {% endif %}
+            </div>
+            <div class="col-md-7">
+                <h3>
+                    {{ profile.name }}
+                    <a href="{% url 'profile_edit' %}"><i class="fa fa-pencil-square-o"></i></a>
+                </h3>
+
+                <h4>{{ profile.organization }}</h4>
+                <p>{{ profile.phone }}</p>
+                <div>{{ profile.bio|safe }}</div>
+            </div>
+        </div>
+
+        <hr>
+        <h2>{% trans 'Registration' %}</h2>
+        <div>
+            <h4>Ticket</h4>
+            {% if is_registered %}
+            <p>{% trans "Thank you for registration." %} <a href="{% url 'registration_status' %}">{% trans "Check Registration Status" %}</a></p>
+            {% else %}
+            <p>{% trans "You didn't have a ticket." %} <a href="{% url 'registration_index' %}">{% trans "Purchase a ticket" %}</a></p>
+            {% endif %}
+
+            <h4>Proposal</h4>
+            {% if has_proposal %}
+            <p>{% trans "Thank you for submitting." %} <a href="{% url 'proposal' %}">{% trans "Check my proposal" %}</a></p>
+            {% else %}
+            <p>{% trans "Please be a session speaker at PyCon." %} <a href="{% url 'propose' %}">{% trans "Submit a new proposal" %}</a></p>
+            {% endif %}
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

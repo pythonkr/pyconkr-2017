@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block head-include %}
+<script src="{% static "components/typed.js/js/typed.js" %}"></script>
+{% endblock %}
+
+{% block nav %}
+<div class="frontpage">
+    <div class="sky">
+        <!--https://www.flickr.com/photos/dcysurfer/5896162967-->
+    </div>
+    <div class="onsky">
+        <div class="container">
+            <div class="slogan">
+                <h1>{% trans "Respect, Diversity" %}</h1>
+                <h3>of <span id="typed"></span>at PyCon APAC 2016</h3>
+                {% include "badge/all.html" %}
+            </div>
+        </div>
+        {% with navbar_class="navbar-translucent" %}
+        {% include "nav.html" %}
+        {% endwith %}
+    </div>
+</div>
+{% endblock %}
+
+{% block wrap %}
+<div class="row wrap">
+    <div class="col-md-12 content">
+        {{ base_content | safe }}
+        {% block content %}{% endblock %}
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+$(function() {
+    // for diverse slogans
+    var sloganStrings = [
+        "cultures", "events", "frameworks", "ideologies", "languages", "libraries",
+        "meetings", "opinions", "processes", "programs", "runtimes", "thinkings"
+    ];
+    $("#typed").typed({
+        strings: sloganStrings,
+        contentType: 'html',
+        typeSpeed: 50,
+        backDelay: 1000,
+        loop: true,
+        shuffle: true
+    });
+    var d = new Date();
+    $(".onsky").css("background", "transparent");
+    $(".sky").css("background", getSkyColorAt(d.getHours(), d.getMinutes()));
+});
+</script>
+{% endblock %}

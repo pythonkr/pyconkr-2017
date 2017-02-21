@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% load thumbnail %}
+
+{% block content %}
+<ul class="speakers media-list">
+{% if not object_list %}
+    <p>준비중 입니다.</p>
+{% endif %}
+{% for speaker in object_list %}
+  <li class="media">
+    <a class="pull-left" href="{{ speaker.get_absolute_url }}">
+      {% thumbnail speaker.image "128x128" crop="center" as im %}
+      <img class="media-speakerect" src="{{ im.url }}" alt="photo of {{ speaker.name }}">
+      {% empty %}
+      <img class="media-speakerect" src="{% static "image/anonymous.png" %}">
+      {% endthumbnail %}
+    </a>
+    <div class="media-body">
+      <h4 class="media-heading">
+        <a href="{{ speaker.get_absolute_url }}">{{ speaker.name }} / {{ speaker.slug }}</a>
+        <span class="badges hidden-xs">{{ speaker.get_badges_xs|safe }}</span>
+      </h4>
+      <!--{{ speaker.desc|striptags|truncatechars:200|safe }}-->
+      {% for program in speaker.program_set.all %}
+      <a href="{{ program.get_absolute_url }}">{{ program.name }}</a>
+      {% endfor %}
+    </div>
+  </li>
+{% endfor %}
+</ul>
+{% endblock %}

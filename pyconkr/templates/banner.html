@@ -1,0 +1,10 @@
+<ul class="banners">
+{% for banner in banners %}
+  <li class="banner">
+    <a href="{{ banner.url }}">
+        <img src="{{ MEDIA_URL }}{{ banner.image }}" alt="{{ banner.name }}">
+    </a>
+    {{ banner.desc|safe }}
+  </li>
+{% endfor %}
+</ul>

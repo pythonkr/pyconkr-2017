@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load thumbnail %}
+{% load i18n %}
+
+{% block title %}{% trans "Patrons" %}{% endblock %}
+
+{% block content %}
+<ul class="patrons media-list">
+{% for obj in object_list %}
+  <li class="media">
+    <div class="pull-left">
+      {% thumbnail obj.user.profile.image "128x128" crop="center" as im %}
+      <img class="media-patron" src="{{ im.url }}" alt="photo of {{ obj.name }}">
+      {% empty %}
+      <img class="media-patron" src="{% static "image/anonymous.png" %}">
+      {% endthumbnail %}
+    </div>
+    <div class="media-body">
+      <h4 class="media-heading">
+        {{ obj.name }}
+        {% if obj.company %}
+        / {{ obj.company }}
+        {% endif %}
+      </h4>
+      {% if obj.user.profile.bio %}
+      <div class="bio">
+        {{ obj.user.profile.bio|safe }}
+      </div>
+      {% endif %}
+    </div>
+  </li>
+{% endfor %}
+</ul>
+{% endblock %}

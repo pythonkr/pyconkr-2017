@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load thumbnail %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="row proposal-detail">
+    {% if request.user.proposal %}
+        <h3>
+            {{ proposal.title }}
+            <a href="{% url 'proposal-update' %}"><i class="fa fa-pencil-square-o"></i></a>
+        </h3>
+        <p>
+            <span class="label label-info">{{ proposal.get_difficulty_display }}</span>
+            <span class="label label-info">{{ proposal.get_duration_display }}</span>
+            <span class="label label-info">{{ proposal.get_language_display }}</span>
+        </p>
+        <div>{{ proposal.brief|linebreaks }}</div>
+        <hr>
+        <div>
+            <h4>{% trans "Detailed description" %}</h4>
+            {{ proposal.desc|safe }}
+        </div>
+        <hr>
+        <div>
+            <h4>{% trans "Comment to reviewers" %}</h4>
+            {{ proposal.comment|safe }}
+        </div>
+
+    {% endif %}
+</div>
+{% endblock %}

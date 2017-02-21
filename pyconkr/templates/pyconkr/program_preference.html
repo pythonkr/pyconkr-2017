@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<form id="preference-form" method="post">
+  <ul class="preferences">
+  {% for program in programs %}
+    <li>
+      <input type="checkbox" name="program[]" value="{{ program.id }}" {% if program.id in object_list %}checked{% endif %}>
+      <a href="{{ program.get_absolute_url }}" target="_blank">{{ program.name }}</a>
+    </li>
+  {% endfor %}
+  </ul>
+  {% csrf_token %}
+  <button class="btn btn-large btn-primary">{% trans "Submit preferences" %}</button>
+</form>
+<script>
+$(function() {
+    $(".preferences input[type=checkbox]").on("click", function() {
+        var checked = $(".preferences input[type=checkbox]:checked").length;
+        if (checked > 5) {
+            alert("{% trans "Up to 5 items can be selected."%}");
+            $(this).prop('checked', false);
+        }
+    });
+});
+</script>
+{% endblock %}
