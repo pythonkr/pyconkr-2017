@@ -89,3 +89,10 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+# IntelliJ
+*.iml
+.idea/
+
+# Bower
+pyconkr/static/components/*
