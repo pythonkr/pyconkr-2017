@@ -13,27 +13,33 @@
         }
 
         div#container {
-            margin-top: auto;
-            margin-bottom: auto;
+        {#            margin-top: auto;#}{#            margin-bottom: auto;#}
         }
 
-        div#title {
-            margin-top: auto;
-            margin-bottom: auto;
-            font-size: 5em;
-        }
-
-        div#date {
-            margin-top: auto;
-            margin-bottom: auto;
-            font-size: 5em;
+        .navbar-default {
+            background: #FFFFFF;
         }
     </style>
 </head>
 <body>
-<div id="container" class="center-block">
-    <div id="title" class="text-center center-block">PyCon KR 2017</div>
-    <div id="date" class="text-center center-block">2017년 8월 12일 - 15일</div>
+<div id="container">
+    <nav class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="index.html">HOME</a>
+                </li>
+                <li>
+                    <a href="cfp.html">CFP</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <article>
+        <h2 id="title">PyCon KR 2017</h2>
+        <h2 id="date">2017년 8월 12일 - 15일</h2>
+    </article>
 </div>
 </body>
 </html>
