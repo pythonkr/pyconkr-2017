@@ -1,0 +1,45 @@
+body {
+    font-family: 'Gulim', sans-serif;
+    width: 850px;
+    margin: 0 auto 0 auto;
+    padding: 0;
+}
+
+nav {
+    padding: 15px;
+}
+
+li {
+    list-style-image: url('../../static/image/li_arrow_img.gif') !important;
+}
+
+#classic-navbar {
+    width: 160px;
+    height: 300px;
+    margin-top: 100px;
+    border: 4px double #000000;
+    background-color: #FFFFCF;
+}
+
+.classic_link {
+    color: #0000EE;
+    padding: 8px 3px !important;
+    text-decoration: underline;
+}
+
+.classic_link:hover {
+    text-decoration: underline;
+}
+
+section {
+    margin: 50px;
+}
+
+.subject_item {
+    margin: 10px;
+}
+
+.description {
+    margin: 10px;
+    font-size: medium;
+}
