@@ -12,6 +12,6 @@
     "select2": "~3.5.4",
     "bootstrap-social": "~5.1.1",
     "typed.js": "~1.1.1",
-    "NanumBarunGothic": "^1.0.0"
+    "bootstrap-side-navbar": "^1.0.1"
   }
 }
