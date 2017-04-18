@@ -1,45 +1,115 @@
+@import url('https://fonts.googleapis.com/earlyaccess/notosanskr.css');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,700');
+
+* {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 300;
+  letter-spacing: -0.04em;
+}
+
 body {
-    font-family: 'Gulim', sans-serif;
-    width: 850px;
-    margin: 0 auto 0 auto;
-    padding: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 1rem;
 }
 
-nav {
-    padding: 15px;
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
 }
 
-li {
-    list-style-image: url('../../static/image/li_arrow_img.gif') !important;
+a {
+  text-decoration: none;
+  color: #333;
 }
 
-#classic-navbar {
-    width: 160px;
-    height: 300px;
-    margin-top: 100px;
-    border: 4px double #000000;
-    background-color: #FFFFCF;
+h1, h2, h3, h4, h5, h6 {
+  margin: 0.3rem 0 0.25rem;
 }
 
-.classic_link {
-    color: #0000EE;
-    padding: 8px 3px !important;
-    text-decoration: underline;
+h1 {
+  font-size: 3.5rem;
 }
 
-.classic_link:hover {
-    text-decoration: underline;
+h2 {
+  margin-top: 55px;
+  font-weight: 700;
 }
 
-section {
-    margin: 50px;
+h3 {
+  margin-top: 10px;
+  font-size: 1rem;
+  font-weight: 500;
 }
 
-.subject_item {
-    margin: 10px;
+article > section:first-child > h2 {
+  margin-top: 0;
 }
 
-.description {
-    margin: 10px;
-    font-size: medium;
+#header {
+  margin-bottom: 40px;
+  padding: 60px 0;
+  width: 100%;
+
+  background-color: #073581;
+
+  color: #FDDA24;
+  text-align: center;
+}
+
+#header h3 div, #header h3 span {
+  font-family: 'Montserrat', sans-serif;
+}
+
+#header h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+}
+
+.header-title {
+  display: inline-block;
+  margin-right: .3rem;
+  font-size: 1.13rem;
+  font-weight: 700;
+}
+
+.header-logo {
+  margin-top: 40px;
+  width: 120px;
+}
+
+#navbar {
+  float: left;
+  margin-left: 30px;
+}
+
+#navbar li a {
+  display: block;
+  padding: 3px 16px;
+  font-size: 0.8rem;
+}
+
+.main-container {
+  margin: 0 auto;
+  width: 720px;
+}
+
+#summary div, #contact div, #sns div {
+  display: inline-block;
+  margin-right: -5px;
+  padding-left: 10px;
+  width: 50%;
+  box-sizing: border-box;
+}
+
+#summary h2 + div, #contact h2 + div, #sns h2 + div {
+  padding-left: 0;
+  padding-right: 10px;
+}
+
+footer {
+  margin-top: 90px;
+  padding: 40px 0;
+  background-color: #ccc;
 }
