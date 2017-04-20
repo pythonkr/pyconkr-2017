@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/earlyaccess/notosanskr.css');
-@import url('https://fonts.googleapis.com/css?family=Montserrat:300,700');
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+@import url(https://fonts.googleapis.com/css?family=Montserrat:300,700);
 
 * {
   font-family: 'Noto Sans KR', sans-serif;
@@ -79,6 +79,10 @@ article > section:first-child > h2 {
   width: 120px;
 }
 
+.bracket_fill, .bracket_line {
+  position: absolute;
+}
+
 #navbar {
   float: left;
   margin-left: 30px;
@@ -113,3 +117,10 @@ footer {
   padding: 40px 0;
   background-color: #ccc;
 }
+
+@media (max-width: 1024px) {
+  #navbar{
+    display: none;
+  }
+}
+</style>
