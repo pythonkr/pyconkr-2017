@@ -118,6 +118,20 @@ section {
   margin-bottom: 5rem;
 }
 
+section h3 {
+  margin-top: 0;
+}
+
+section div, section p {
+  margin-top: 1rem;
+}
+
+.topic-list {
+  padding: 25px;
+  border: 1px solid #eee;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
 #summary div, #contact div, #sns div {
   display: inline-block;
   margin-right: -5px;
