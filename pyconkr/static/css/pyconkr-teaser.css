@@ -13,6 +13,7 @@
 body {
   margin: 0;
   padding: 0;
+  color: #222;
   font-size: 1rem;
   overflow-x: hidden;
 }
@@ -37,19 +38,14 @@ h1 {
 }
 
 h2 {
-  margin-left: -.2rem;
-  margin-top: 5rem;
+  margin-left: -0.2rem;
   font-weight: 700;
 }
 
 h3 {
-  margin-top: 10px;
+  margin-top: 0.6rem;
   font-size: 1rem;
   font-weight: 700;
-}
-
-article > section:first-child > h2 {
-  margin-top: 0;
 }
 
 #header {
@@ -75,9 +71,15 @@ article > section:first-child > h2 {
   font-weight: 700;
 }
 
+.header-slogan {
+  margin: 0 2rem;
+  line-height: 3.6rem;
+}
+
 .header-title {
   display: inline-block;
-  margin-right: .3rem;
+  margin-top: -.11rem;
+  margin-right: 0.3rem;
   font-size: 1.13rem;
   font-weight: 700;
 }
@@ -103,9 +105,17 @@ article > section:first-child > h2 {
   font-size: 0.8rem;
 }
 
+#navbar li a:hover {
+  font-weight: 700;
+}
+
 .main-container {
   margin: 0 auto;
   width: 720px;
+}
+
+section {
+  margin-bottom: 5rem;
 }
 
 #summary div, #contact div, #sns div {
@@ -121,7 +131,7 @@ article > section:first-child > h2 {
 
 footer {
   margin-top: 170px;
-  padding: 5rem 0;
+  padding: 4rem 0;
   background-color: #eee;
 }
 
