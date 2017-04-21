@@ -5,12 +5,16 @@
   font-family: 'Noto Sans KR', sans-serif;
   font-weight: 300;
   letter-spacing: -0.04em;
+
+  vertical-align: top;
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
   padding: 0;
   font-size: 1rem;
+  overflow-x: hidden;
 }
 
 ul {
@@ -25,7 +29,7 @@ a {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  margin: 0.3rem 0 0.25rem;
+  margin: 0.3rem 0 0.3rem;
 }
 
 h1 {
@@ -33,14 +37,15 @@ h1 {
 }
 
 h2 {
-  margin-top: 55px;
+  margin-left: -.2rem;
+  margin-top: 5rem;
   font-weight: 700;
 }
 
 h3 {
   margin-top: 10px;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 700;
 }
 
 article > section:first-child > h2 {
@@ -102,20 +107,37 @@ article > section:first-child > h2 {
 #summary div, #contact div, #sns div {
   display: inline-block;
   margin-right: -5px;
-  padding-left: 10px;
   width: 50%;
   box-sizing: border-box;
 }
 
 #summary h2 + div, #contact h2 + div, #sns h2 + div {
-  padding-left: 0;
-  padding-right: 10px;
+  padding-right: 30px;
 }
 
 footer {
-  margin-top: 90px;
-  padding: 40px 0;
-  background-color: #ccc;
+  margin-top: 170px;
+  padding: 5rem 0;
+  background-color: #eee;
+}
+
+@media (max-width: 640px) {
+  #summary div, #contact div, #sns div {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .bracket_fill {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .main-container {
+    width: 100%;
+    padding: 0 3.5rem;
+  }
 }
 
 @media (max-width: 1024px) {
@@ -123,4 +145,3 @@ footer {
     display: none;
   }
 }
-</style>
