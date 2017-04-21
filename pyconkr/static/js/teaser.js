@@ -1,9 +1,21 @@
+var w;
+var y = window.pageYOffset;
+
+var bracket_fill = document.getElementsByClassName("bracket_fill");
+var bracket_line = document.getElementsByClassName("bracket_line");
+
+var bracket_fill_top;
+var bracket_fill_left;
+var bracket_line_top;
+var bracket_line_left;
+
 document.addEventListener("DOMContentLoaded", function(event) {
   moveBrackets();
 });
 
 window.onscroll = function() {
   stickyNavbar();
+  scrollBrackets();
 }
 
 window.onresize = function(event) {
@@ -11,35 +23,51 @@ window.onresize = function(event) {
 }
 
 function moveBrackets() {
-  var bracket_fill = document.getElementsByClassName("bracket_fill");
-  var bracket_line = document.getElementsByClassName("bracket_line");
-  var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-  var y = window.pageYOffset;
+  w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+  y = window.pageYOffset;
+
+  bracket_fill_top = [map(w, 0, 1920, -70, -40), map(w, 0, 1920, 160, 150)];
+  bracket_fill_left = [map(w, 0, 1920, -270, 400), map(w, 0, 1920, w+300, w-500)];
+
+  bracket_line_top = [map(w, 0, 1920, -10, 30), map(w, 0, 1920, 130, 180), map(w, 0, 1920, -60, -100), map(w, 0, 1920, 170, 200)];
+  bracket_line_left = [map(w, 0, 1920, -200, 250), map(w, 0, 1920, -110, 550), map(w, 0, 1920, w-70, w-530),  map(w, 0, 1920, w-50, w-350)];
 
   for(var i = 0; i < bracket_fill.length; i++) {
     bracket_fill[i].style.width = map(w, 0, 1920, 100, 150) + "px";
+    bracket_fill[i].style.top = bracket_fill_top[i] +  "px";
+    bracket_fill[i].style.left = bracket_fill_left[i] + "px";
   }
+
   for(var i = 0; i < bracket_line.length; i++) {
     bracket_line[i].style.width = map(w, 0, 1920, 100, 150) + "px";
+    bracket_line[i].style.top = bracket_line_top[i] + "px";
+    bracket_line[i].style.left = bracket_line_left[i] + "px";
   }
+}
 
-  bracket_fill[0].style.top = map(w, 0, 1920, -30, -40) + "px";
-  bracket_fill[0].style.left = map(w, 0, 1920, -300, 450) + "px";
+function scrollBrackets() {
+  y = window.pageYOffset;
 
-  bracket_fill[1].style.top = map(w, 0, 1920, 100, 150) + "px";
-  bracket_fill[1].style.left = map(w, 0, 1920, w+100, w-550) + "px";
+  if((y*1.5+300) < document.getElementsByTagName('footer')[0].offsetTop){
+    bracket_fill_top = [map(w, 0, 1920, -70, -40), map(w, 0, 1920, 160, 150)];
+    bracket_line_top = [map(w, 0, 1920, -10, 30), map(w, 0, 1920, 130, 180), map(w, 0, 1920, -60, -100), map(w, 0, 1920, 170, 200)];
 
-  bracket_line[0].style.top = map(w, 0, 1920, -10, 30) + "px";
-  bracket_line[0].style.left = map(w, 0, 1920, -200, 250) + "px";
+    bracket_fill_top[0] = bracket_fill_top[0] + (y*0.7);
+    bracket_fill_top[1] = bracket_fill_top[1] + (y*0.5);
 
-  bracket_line[1].style.top = map(w, 0, 1920, 130, 180) + "px";
-  bracket_line[1].style.left = map(w, 0, 1920, -110, 550) + "px";
+    bracket_line_top[0] = bracket_line_top[0] + (y*1.05);
+    bracket_line_top[1] = bracket_line_top[1] + (y*1.3);
+    bracket_line_top[2] = bracket_line_top[2] + (y*1.2);
+    bracket_line_top[3] = bracket_line_top[3] + (y*1.5);
 
-  bracket_line[2].style.top = map(w, 0, 1920, -60, -100) + "px";
-  bracket_line[2].style.left = map(w, 0, 1920, w-70, w-530) + "px";
+    for(var i = 0; i < bracket_fill.length; i++) {
+      bracket_fill[i].style.top = bracket_fill_top[i] + "px";
+    }
 
-  bracket_line[3].style.top = map(w, 0, 1920, 180, 200) + "px";
-  bracket_line[3].style.left = map(w, 0, 1920, w+150, w-350) + "px";
+    for(var i = 0; i < bracket_line.length; i++) {
+      bracket_line[i].style.top = bracket_line_top[i] + "px";
+    }
+  }
 }
 
 function stickyNavbar() {

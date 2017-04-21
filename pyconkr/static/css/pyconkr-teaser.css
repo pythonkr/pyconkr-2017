@@ -53,7 +53,10 @@ article > section:first-child > h2 {
 }
 
 #header {
-  margin-bottom: 40px;
+  position: relative;
+  z-index: -2;
+
+  margin-bottom: 60px;
   padding: 60px 0;
   width: 100%;
 
@@ -86,6 +89,7 @@ article > section:first-child > h2 {
 
 .bracket_fill, .bracket_line {
   position: absolute;
+  z-index: -1;
 }
 
 #navbar {
