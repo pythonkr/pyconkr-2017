@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 import datetime
 
-import mock
+from unittest import mock
 from django.test import TestCase
 from django.contrib.auth import get_user_model
 from django.core.urlresolvers import reverse
 from constance.test import override_config
 from django_dynamic_fixture import G
 
-from models import Option, Registration
+from .models import Option, Registration
 
 User = get_user_model()
 
