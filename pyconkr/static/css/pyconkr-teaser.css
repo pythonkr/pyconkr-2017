@@ -4,7 +4,9 @@
 * {
   font-family: 'Noto Sans KR', sans-serif;
   font-weight: 300;
-  letter-spacing: -0.03em;
+  word-break: break-word;
+  letter-spacing: -0.02rem;
+  line-height: 1.6rem;
 
   vertical-align: top;
   box-sizing: border-box;
@@ -72,7 +74,7 @@ h3 {
 }
 
 .header-slogan {
-  margin: 0 2rem;
+  margin: 0 3rem;
   line-height: 3.6rem;
 }
 
