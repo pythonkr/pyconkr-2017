@@ -48,7 +48,7 @@ function moveBrackets() {
 function scrollBrackets() {
   y = window.pageYOffset;
 
-  if((y*1.5+300) < document.getElementsByTagName('footer')[0].offsetTop){
+  if((y*1.5+230) < document.getElementsByTagName('footer')[0].offsetTop){
     bracket_fill_top = [map(w, 0, 1920, -70, -40), map(w, 0, 1920, 160, 150)];
     bracket_line_top = [map(w, 0, 1920, -10, 30), map(w, 0, 1920, 130, 180), map(w, 0, 1920, -60, -100), map(w, 0, 1920, 170, 200)];
 
