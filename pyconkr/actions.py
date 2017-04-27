@@ -23,4 +23,4 @@ def convert_proposal_to_program(modeladmin, request, queryset):
         program.speakers.add(speaker)
         program.save()
 
-        print program, speaker
+        print(program, speaker)

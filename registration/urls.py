@@ -1,7 +1,7 @@
 from django.conf.urls import url
 from django.contrib.auth.decorators import login_required
 
-import views
+from . import views
 
 urlpatterns = [
     url(r'^purchase/$', views.index, name='registration_index'),
