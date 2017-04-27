@@ -28,7 +28,6 @@ ul {
 
 a {
   text-decoration: none;
-  color: #333;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -48,6 +47,10 @@ h3 {
   margin-top: 0.6rem;
   font-size: 1rem;
   font-weight: 700;
+}
+
+nav a {
+  color: #333;
 }
 
 #header {
@@ -126,6 +129,16 @@ section h3 {
 
 section div, section p {
   margin-top: 1rem;
+}
+
+section li {
+  margin-bottom: 5px;
+}
+
+section a {
+  color: #333;
+  border-bottom: 2px solid #FDDA24;
+  padding-bottom: 3px;
 }
 
 .topic-list {
