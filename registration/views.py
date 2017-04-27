@@ -15,7 +15,7 @@ from constance import config
 from pyconkr.helper import send_email_ticket_confirm, render_io_error
 from .forms import RegistrationForm, RegistrationAdditionalPriceForm
 from .models import Option, Registration
-from iamporter import get_access_token, Iamporter, IamporterError
+from .iamporter import get_access_token, Iamporter, IamporterError
 
 logger = logging.getLogger(__name__)
 payment_logger = logging.getLogger('payment')

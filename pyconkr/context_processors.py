@@ -76,7 +76,7 @@ def default(request):
 
     rp = request.path[len(settings.FORCE_SCRIPT_NAME):]
 
-    for k, v in menu.iteritems():
+    for k, v in menu.items():
         path = '/{}/'.format(k)
 
         if rp.startswith(path):
@@ -86,7 +86,7 @@ def default(request):
             if 'submenu' in v:
                 submenu = v['submenu']
 
-                for sk, sv in v['submenu'].iteritems():
+                for sk, sv in v['submenu'].items():
                     sv['path'] = '{}{}/'.format(path, sk)
                     subpath = sv['path'][:-2]
 

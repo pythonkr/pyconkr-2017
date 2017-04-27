@@ -4,7 +4,7 @@ from django.core.mail import send_mass_mail
 from django.shortcuts import render
 from constance import config
 from datetime import datetime
-from iamporter import get_access_token, Iamporter, IamporterError
+from .iamporter import get_access_token, Iamporter, IamporterError
 
 from .models import Registration, Option
 
