@@ -16,7 +16,7 @@ class Command(BaseCommand):
         access_token = get_access_token(config.IMP_API_KEY, config.IMP_API_SECRET)
         imp_client = Iamporter(access_token)
         # Use hard coded date only for pycon 2016.
-        paid_pg = imp_client.get_paid_list(since=datetime.datetime(2016, 1, 1))
+        paid_pg = imp_client.get_paid_list(since=datetime.datetime(2017, 1, 1))
         paid_pg = map(lambda x: (x['merchant_uid'], x['buyer_email']), paid_pg)
         paid_pg = dict(paid_pg)
         print('registered but not paid')
