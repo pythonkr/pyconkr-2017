@@ -1,21 +1,22 @@
 <!DOCTYPE html>
+{% load staticfiles %}
 <html lang="kr">
 <head>
   <meta charset="UTF-8">
   <title>파이콘 한국 2017 - Teaser</title>
-  <link rel="icon" type="image/png" href="../../static/image/favicon2017.ico">
-  <link href="../../static/css/pyconkr-teaser.css" rel="stylesheet" type="text/css">
-  <script src="../../static/js/teaser.js"></script>
+  <link rel="icon" type="image/png" href="{% static "image/favicon2017.ico" %}">
+  <link href="{% static "css/pyconkr-teaser.css" %}" rel="stylesheet" type="text/css">
+  <script src="{% static "js/teaser.js" %}"></script>
 </head>
 <body>
   <div id="brackets">
-    <img class="bracket_fill" src="../../static/image/angle_bracket_fill.png"></img>
-    <img class="bracket_fill" src="../../static/image/angle_bracket_fill.png"></img>
+    <img class="bracket_fill" src="{% static "image/angle_bracket_fill.png" %}"></img>
+    <img class="bracket_fill" src="{% static "image/angle_bracket_fill.png" %}"></img>
 
-    <img class="bracket_line" src="../../static/image/angle_bracket_line.png"></img>
-    <img class="bracket_line" src="../../static/image/angle_bracket_line.png"></img>
-    <img class="bracket_line" src="../../static/image/angle_bracket_line.png"></img>
-    <img class="bracket_line" src="../../static/image/angle_bracket_line.png"></img>
+    <img class="bracket_line" src="{% static "image/angle_bracket_line.png" %}"></img>
+    <img class="bracket_line" src="{% static "image/angle_bracket_line.png" %}"></img>
+    <img class="bracket_line" src="{% static "image/angle_bracket_line.png" %}"></img>
+    <img class="bracket_line" src="{% static "image/angle_bracket_line.png" %}"></img>
   </div>
   <header id="header">
     <h1 class="header-slogan">Back to the Basic</h1>
@@ -24,7 +25,7 @@
       <span class="header-date">2017.08.12-15</span>
       <div class="header-place">Seoul, COEX</div>
     </h3>
-    <img class="header-logo" src="../../static/image/pycon2017-logo-yellow.png">
+    <img class="header-logo" src="{% static "image/pycon2017-logo-yellow.png" %}">
   </header>
   <nav id="navbar">
   <ul class="nav">
