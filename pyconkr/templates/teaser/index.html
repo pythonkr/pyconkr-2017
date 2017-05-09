@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load staticfiles %}
 <html lang="kr">
 <head>
     <meta charset="UTF-8">
@@ -13,19 +14,19 @@
 
     <title>파이콘 한국 2017 - Teaser</title>
 
-    <link rel="icon" type="image/png" href="../../static/image/favicon2017.ico">
-    <link href="../../static/css/pyconkr-teaser.css" rel="stylesheet" type="text/css">
-    <script src="../../static/js/teaser.js"></script>
+    <link rel="icon" type="image/png" href="{% static "image/favicon2017.ico" %}">
+    <link href="{% static "css/pyconkr-teaser.css" %}" rel="stylesheet" type="text/css">
+    <script src="{% static "js/teaser.js" %}"></script>
 </head>
 <body>
 <div id="brackets">
-    <img class="bracket_fill" src="../../static/image/angle_bracket_fill.png"></img>
-    <img class="bracket_fill" src="../../static/image/angle_bracket_fill.png"></img>
+    <img class="bracket_fill" src="{% static "image/angle_bracket_fill.png" %}"></img>
+    <img class="bracket_fill" src="{% static "image/angle_bracket_fill.png" %}"></img>
 
-    <img class="bracket_line" src="../../static/image/angle_bracket_line.png"></img>
-    <img class="bracket_line" src="../../static/image/angle_bracket_line.png"></img>
-    <img class="bracket_line" src="../../static/image/angle_bracket_line.png"></img>
-    <img class="bracket_line" src="../../static/image/angle_bracket_line.png"></img>
+    <img class="bracket_line" src="{% static "image/angle_bracket_line.png" %}"></img>
+    <img class="bracket_line" src="{% static "image/angle_bracket_line.png" %}"></img>
+    <img class="bracket_line" src="{% static "image/angle_bracket_line.png" %}"></img>
+    <img class="bracket_line" src="{% static "image/angle_bracket_line.png" %}"></img>
 </div>
 <header id="header">
     <h1 class="header-slogan">Back to the Basic</h1>
@@ -34,7 +35,7 @@
         <span class="header-date">2017.08.12-15</span>
         <div class="header-place">Seoul, COEX</div>
     </h3>
-    <img class="header-logo" src="../../static/image/pycon2017-logo-yellow.png">
+    <img class="header-logo" src="{% static "image/pycon2017-logo-yellow.png" %}">
 </header>
 <nav id="navbar">
     <ul class="nav">
@@ -135,7 +136,8 @@
             <div>
                 <p>
                     파이콘 한국은 한국의 파이썬 개발자들이 지식을 공유하고 만남을 갖기 위한 공유의 장입니다.
-                    아직 티켓 판매 일정은 정해지지 않았습니다. 추후 공식 페이스북, 트위터 등을 통해서 공지할 예정입니다.
+                    5월 16일 오후 1시부터 얼리버드 티켓을 판매할 예정입니다.
+                    아직 일반 티켓 판매 일정은 정해지지 않았으며 추후 공식 페이스북, 트위터 등을 통해서 공지할 예정입니다.
                 </p>
             </div>
         </section>
@@ -165,7 +167,7 @@
 </div>
 <footer>
     <div class="main-grid">
-        <img class="footer-logo" src="../../static/image/pyconkr2017-logo.png">
+        <img class="footer-logo" src="{% static "image/pyconkr2017-logo.png" %}">
         <div class="footer-content">
             <h3>Back to the Basic at PyCon Korea 2017</h3>
             PyCon Korea 2017 is a product of PyCon Korea Organizing Team
