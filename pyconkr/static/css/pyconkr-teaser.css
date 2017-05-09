@@ -3,7 +3,6 @@
 
 * {
   font-family: 'Noto Sans KR', sans-serif;
-  font-weight: 300;
   word-break: break-word;
   letter-spacing: -0.02rem;
   line-height: 1.6rem;
@@ -12,6 +11,9 @@
   box-sizing: border-box;
 }
 
+strong{
+    font-weight: 600;
+}
 body {
   margin: 0;
   padding: 0;
