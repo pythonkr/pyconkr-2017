@@ -8,8 +8,8 @@
 ## Getting started
 
 ```bash
-$ git clone git@github.com:pythonkr/pyconapac-2016.git
-$ cd pyconapac-2016
+$ git clone git@github.com:pythonkr/pyconkr-2017.git
+$ cd pyconkr-2017
 $ pip install -r requirements.txt
 $ python manage.py compilemessages
 $ python manage.py makemigrations  # flatpages
