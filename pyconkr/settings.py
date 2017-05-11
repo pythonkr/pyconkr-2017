@@ -190,8 +190,8 @@ ACCOUNT_EMAIL_REQUIRED = True
 
 DOMAIN = ''
 
-EMAIL_LOGIN_TITLE = ugettext("PyCon APAC 2016 one-time login token")
-EMAIL_SENDER = ugettext("PyCon APAC 2016") + "<registration@pycon.kr>"
+EMAIL_LOGIN_TITLE = ugettext("PyCon 2017 one-time login token")
+EMAIL_SENDER = ugettext("PyCon 2017") + "<registration@pycon.kr>"
 EMAIL_USE_TLS = True
 EMAIL_HOST = ''
 EMAIL_PORT = 587
