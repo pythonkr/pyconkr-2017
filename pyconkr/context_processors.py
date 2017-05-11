@@ -1,9 +1,11 @@
+from collections import OrderedDict
+
+from django.utils import timezone
 from django.conf import settings
 from django.contrib.flatpages.models import FlatPage
 from django.db.models import Count
 from django.utils.translation import ugettext_lazy as _
-from collections import OrderedDict
-from datetime import datetime
+
 from .models import SponsorLevel, Speaker, Banner
 
 
@@ -94,7 +96,7 @@ def default(request):
                         sv['active'] = True
                         title = sv['title']
 
-    now = datetime.now()
+    now = timezone.now()
     banners = Banner.objects.filter(begin__lte=now, end__gte=now)
 
     c = {
