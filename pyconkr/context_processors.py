@@ -22,7 +22,7 @@ def default(request):
             'title': _('About'),
             'icon': 'python',
             'submenu': OrderedDict([
-                ('pyconkr', {'title': _('About PyCon APAC 2016')}),
+                ('pyconkr', {'title': _('About PyCon Korea 2017')}),
                 ('coc', {'title': _('Code of Conduct')}),
                 ('announcements', {'title': _('Announcements')}),
                 ('sponsor', {'title': _('Sponsors')}),

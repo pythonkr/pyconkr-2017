@@ -11,9 +11,9 @@ from .models import Registration, Option
 
 def send_bankpayment_alert_email(modeladmin, request, queryset):
     messages = []
-    subject = u"PyCon APAC 2016 입금확인부탁드립니다. Please Check PyCon APAC 2016 payment"
+    subject = u"PyCon Korea 2017 입금확인부탁드립니다. Please Check PyCon Korea 2017 payment"
     body = u"""
-    안녕하세요. PyCon APAC 준비위원회입니다.
+    안녕하세요. PyCon Korea 준비위원회입니다.
     현재 입금여부를 확인하였으나 입금이 되지 않았습니다.
     혹시나 다른 이름으로 입금하신분은 support@pycon.kr 로 메일 부탁드립니다.
     입금시한은 구매로부터 일주일입니다.
@@ -31,7 +31,7 @@ send_bankpayment_alert_email.short_description = "Send Bank Payment Email"
 
 def cancel_registration(modeladmin, request, queryset):
     messages = []
-    subject = u"PyCon APAC 2016 결제 취소 알림"
+    subject = u"PyCon Korea 2017 결제 취소 알림"
     body = u"""
 안녕하세요. PyCon APAC 준비위원회입니다.
 
