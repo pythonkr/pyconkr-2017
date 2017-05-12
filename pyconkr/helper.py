@@ -9,8 +9,8 @@ from django.shortcuts import render
 
 def sendEmailToken(request, token):
 
-    html = render(request, 'mail/token_html.html', {'token': token})
-    text = render(request, 'mail/token_text.html', {'token': token})
+    html = render_to_string('mail/token_html.html', {'token': token}, request)
+    text = render_to_string('mail/token_text.html', {'token': token}, request)
 
     msg = EmailMultiAlternatives(
         settings.EMAIL_LOGIN_TITLE,
