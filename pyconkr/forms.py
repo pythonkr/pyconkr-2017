@@ -37,10 +37,11 @@ class SpeakerForm(forms.ModelForm):
         self.helper = FormHelper()
         self.helper.form_method = 'post'
         self.helper.add_input(Submit('submit', _('Submit')))
-        self.fields['image'].help_text += _('Maximum size is %d MB') \
-            % settings.SPEAKER_IMAGE_MAXIMUM_FILESIZE_IN_MB
-        self.fields['image'].help_text += ' / ' + _('Minimum dimension is %d x %d') \
-            % settings.SPEAKER_IMAGE_MINIMUM_DIMENSION
+        self.fields['image'].help_text += _('Maximum size is %(size)d MB') \
+            % {'size': settings.SPEAKER_IMAGE_MAXIMUM_FILESIZE_IN_MB}
+        self.fields['image'].help_text += ' / ' \
+            + _('Minimum dimension is %(dim)d x %(dim)d') \
+            % {'dim': settings.SPEAKER_IMAGE_MINIMUM_DIMENSION}
 
     class Meta:
         model = Speaker
@@ -60,8 +61,8 @@ class SpeakerForm(forms.ModelForm):
             try:
                 if image._size > settings.SPEAKER_IMAGE_MAXIMUM_FILESIZE_IN_MB * 1024 * 1024:
                     raise forms.ValidationError(
-                        _('Maximum size is %d MB')
-                        % settings.SPEAKER_IMAGE_MAXIMUM_FILESIZE_IN_MB
+                        _('Maximum size is %(size)d MB')
+                        % {'size': settings.SPEAKER_IMAGE_MAXIMUM_FILESIZE_IN_MB}
                     )
             except AttributeError:
                 pass
@@ -70,8 +71,8 @@ class SpeakerForm(forms.ModelForm):
             if w < settings.SPEAKER_IMAGE_MINIMUM_DIMENSION[0] \
                     or h < settings.SPEAKER_IMAGE_MINIMUM_DIMENSION[1]:
                 raise forms.ValidationError(
-                    _('Minimum dimension is %d x %d')
-                    % settings.SPEAKER_IMAGE_MINIMUM_DIMENSION
+                    _('Minimum dimension is %(dim)d x %(dim)d')
+                    % {'dim': settings.SPEAKER_IMAGE_MINIMUM_DIMENSION}
                 )
 
         return image
@@ -161,10 +162,11 @@ class ProfileForm(forms.ModelForm):
         self.helper = FormHelper()
         self.helper.form_method = 'post'
         self.helper.add_input(Submit('submit', _('Submit')))
-        self.fields['image'].help_text += _('Maximum size is %d MB') \
-            % settings.SPEAKER_IMAGE_MAXIMUM_FILESIZE_IN_MB
-        self.fields['image'].help_text += ' / ' + _('Minimum dimension is %d x %d') \
-            % settings.SPEAKER_IMAGE_MINIMUM_DIMENSION
+        self.fields['image'].help_text += _('Maximum size is %(size)d MB') \
+            % {'size': settings.SPEAKER_IMAGE_MAXIMUM_FILESIZE_IN_MB}
+        self.fields['image'].help_text += ' / ' \
+            + _('Minimum dimension is %(dim)d x %(dim)d') \
+            % {'dim': settings.SPEAKER_IMAGE_MINIMUM_DIMENSION}
 
     class Meta:
         model = Profile
@@ -182,8 +184,8 @@ class ProfileForm(forms.ModelForm):
             try:
                 if image._size > settings.SPEAKER_IMAGE_MAXIMUM_FILESIZE_IN_MB * 1024 * 1024:
                     raise forms.ValidationError(
-                        _('Maximum size is %d MB')
-                        % settings.SPEAKER_IMAGE_MAXIMUM_FILESIZE_IN_MB
+                        _('Maximum size is %(size)d MB')
+                        % {'size': settings.SPEAKER_IMAGE_MAXIMUM_FILESIZE_IN_MB}
                     )
             except AttributeError:
                 pass
@@ -192,8 +194,8 @@ class ProfileForm(forms.ModelForm):
             if w < settings.SPEAKER_IMAGE_MINIMUM_DIMENSION[0] \
                     or h < settings.SPEAKER_IMAGE_MINIMUM_DIMENSION[1]:
                 raise forms.ValidationError(
-                    _('Minimum dimension is %d x %d')
-                    % settings.SPEAKER_IMAGE_MINIMUM_DIMENSION
+                    _('Minimum dimension is %(dim)d x %(dim)d')
+                    % {'dim': settings.SPEAKER_IMAGE_MINIMUM_DIMENSION}
                 )
 
         return image

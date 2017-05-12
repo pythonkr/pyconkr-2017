@@ -339,7 +339,7 @@ class Product(object):  # product is not django model now.
 
     @property
     def name(self):
-        return 'PyCon Korea 2016'
+        return 'PyCon Korea 2017'
 
 
 class Banner(models.Model):
