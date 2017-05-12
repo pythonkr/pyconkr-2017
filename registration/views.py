@@ -12,7 +12,7 @@ from django.views.generic import DetailView
 from django.views.decorators.csrf import csrf_exempt
 from constance import config
 
-from pyconkr.helper import send_email_ticket_confirm, render_io_error
+from pyconkr.helper import render_io_error
 from .forms import RegistrationForm, RegistrationAdditionalPriceForm
 from .models import Option, Registration
 from .iamporter import get_access_token, Iamporter, IamporterError
