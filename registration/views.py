@@ -195,8 +195,6 @@ def payment_process(request):
         else:
             raise Exception('Unknown payment method')
 
-        # if not settings.DEBUG:
-        #     send_email_ticket_confirm(request, registration)
     except IamporterError as e:
         # TODO : other status code
         return JsonResponse({
