@@ -5,15 +5,12 @@ from django.http import HttpResponse
 from django.template import Context
 from django.template.loader import render_to_string, get_template
 import json
-
+from django.shortcuts import render
 
 def sendEmailToken(request, token):
-    variables = Context({
-        'request': request,
-        'token': token,
-    })
-    html = get_template('mail/token_html.html').render(variables)
-    text = get_template('mail/token_text.html').render(variables)
+
+    html = render_to_string('mail/token_html.html', {'token': token}, request)
+    text = render_to_string('mail/token_text.html', {'token': token}, request)
 
     msg = EmailMultiAlternatives(
         settings.EMAIL_LOGIN_TITLE,
