@@ -81,19 +81,17 @@
           <ul id="language-menu" class="dropdown-menu" role="menu">
             {% get_language_info_list for LANGUAGES as languages %}
             {% for language in languages %}
-            <li><a href="#" data-code="{{ language.code }}">{{ language.name_local }}</a></li>
+            {% language language.code %}
+            <li><a href="{% url 'index' %}">{{ language.name_local }}</a></li>
+            {% endlanguage %}
             {% endfor %}
           </ul>
-          <form id="language-form" action="{% url 'set_language' %}" method="post">
-            {% csrf_token %}
-            <input name="next" type="hidden" value="{{ request.path }}" />
-            <input name="language" type="hidden" />
-          </form>
         </li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container -->
 </nav>
+
 {#<script>#}
 {#$(function() {#}
 {#  $("#language-menu a").click(function() {#}
@@ -108,3 +106,4 @@
 {#  {% endif %}#}
 {#});#}
 {#</script>#}
+

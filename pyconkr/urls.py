@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.conf.urls import include, url
+from django.conf.urls.i18n import i18n_patterns
 from django.conf.urls.static import static
 from django.contrib.flatpages import views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
@@ -22,6 +23,14 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = [
+    url(r'^robots.txt$', robots, name='robots'),
+    url(r'^admin/', include(admin.site.urls)),
+
+    url(r'^accounts/', include('allauth.urls')),
+    url(r'^i18n/', include('django.conf.urls.i18n')),
+]
+
+urlpatterns += i18n_patterns(
     # url(r'.*', TemplateView.as_view(template_name='teaser/index.html')),
     url(r'^$', index, name='index'),
     url(r'^room/(?P<pk>\d+)$',
@@ -79,13 +88,13 @@ urlpatterns = [
     url(r'^logout/$', logout, name='logout'),
 
     url(r'^registration/', include('registration.urls')),
-    url(r'^robots.txt$', robots, name='robots'),
-    url(r'^summernote/', include('django_summernote.urls')),
-    url(r'^admin/', include(admin.site.urls)),
 
-    url(r'^accounts/', include('allauth.urls')),
-    url(r'^i18n/', include('django.conf.urls.i18n')),
-]
+    # for flatpages
+    url(r'^pages/', include('django.contrib.flatpages.urls')),
+    url(r'^(?P<url>.*/)$', views.flatpage, name='flatpage'),
+
+    prefix_default_language=False
+)
 
 # for development
 if settings.DEBUG:
@@ -97,8 +106,3 @@ if 'rosetta' in settings.INSTALLED_APPS:
     urlpatterns += [
         url(r'^rosetta/', include('rosetta.urls')),
     ]
-
-# for flatpages
-urlpatterns += [
-    url(r'^(?P<url>.*/)$', views.flatpage),
-]
