@@ -12,6 +12,7 @@
     "select2": "~3.5.4",
     "bootstrap-social": "~5.1.1",
     "typed.js": "~1.1.1",
-    "bootstrap-side-navbar": "^1.0.1"
+    "bootstrap-side-navbar": "^1.0.1",
+    "montserrat-webfont": "^1.0.3"
   }
 }

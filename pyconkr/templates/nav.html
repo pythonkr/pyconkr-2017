@@ -10,7 +10,7 @@
       </button>
       {% if not index %}
       <a class="navbar-logo" href="{% url "index" %}">
-        <img src="{% static "image/pyconkr-logo-small.png" %}" alt="PyCon Korea">
+        <img src="{% static "image/pycon2017-logo-yellow.png" %}" alt="PyCon Korea">
       </a>
       {% endif %}
     </div>
@@ -91,11 +91,19 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container -->
 </nav>
-<script>
-$(function() {
-  {% if not index %}
-  var d = new Date();
-  $(".navbar").css("background", getSkyColorAt(d.getHours(), d.getMinutes()));
-  {% endif %}
-});
-</script>
+
+{#<script>#}
+{#$(function() {#}
+{#  $("#language-menu a").click(function() {#}
+{#      var form = $("#language-form");#}
+{#      form.find("input[name='language']").val($(this).data("code"));#}
+{#      form.submit();#}
+{#  });#}
+{##}
+{#  {% if not index %}#}
+{#  var d = new Date();#}
+{#  $(".navbar").css("background", getSkyColorAt(d.getHours(), d.getMinutes()));#}
+{#  {% endif %}#}
+{#});#}
+{#</script>#}
+

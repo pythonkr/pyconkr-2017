@@ -648,3 +648,9 @@ msgstr "Update tutorial"
 
 #~ msgid "Registration receipt"
 #~ msgstr "Registration receipt"
+
+msgid "PyCon Schedule"
+msgstr "12 Aug 2017 (Sat) ~ 15 Aug 2017 (Tue)"
+
+msgid "PyCon Location"
+msgstr "Coex Grand Ballroom, Seoul"
