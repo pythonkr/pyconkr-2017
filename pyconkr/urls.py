@@ -28,6 +28,8 @@ urlpatterns = [
 
     url(r'^accounts/', include('allauth.urls')),
     url(r'^i18n/', include('django.conf.urls.i18n')),
+
+    url(r'^summernote/', include('django_summernote.urls')),
 ]
 
 urlpatterns += i18n_patterns(
