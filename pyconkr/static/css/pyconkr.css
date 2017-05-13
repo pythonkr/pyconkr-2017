@@ -59,13 +59,13 @@ input[type=file] {
 .navbar {
     padding: 10px 0;
     margin-bottom: 0px !important;
-    background: none;
+    background: #002E7A;
     border: 0;
     border-radius: 0;
 }
 
 .navbar .navbar-nav>li>a {
-    font-family: 'Lato', 'Helvetica Neue', 'Apple SD Gothic Neo', 'Nanum Gothic', 'Arial', 'Apple Gothic', sans-serif;
+    font-family: 'Montserrat','Lato', 'Helvetica Neue', 'Apple SD Gothic Neo', 'Nanum Gothic', 'Arial', 'Apple Gothic', sans-serif;
     font-weight: 300;
     color: #333;
 }
@@ -689,4 +689,15 @@ input[type=file] {
     0% { opacity:1; }
     50% { opacity:0; }
     100% { opacity:1; }
+}
+
+.bracket_fill, .bracket_line {
+    position: absolute;
+    z-index: -1;
+}
+
+@media (max-width: 768px) {
+    .bracket_fill {
+        display: none;
+    }
 }
