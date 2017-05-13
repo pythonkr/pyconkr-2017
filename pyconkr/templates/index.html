@@ -15,7 +15,12 @@
         <div class="container">
             <div class="slogan">
                 <h1>{% trans "Back to the Basic" %}</h1>
-                <h3>of <span id="typed"></span>at PyCon Korea 2017</h3>
+                <h3>&gt;&gt;&gt; PyConKR2017</h3>
+                <p>
+                    <span>{% trans "PyCon Schedule" %}</span>
+                    <br>
+                    <span class="location">{% trans "PyCon Location" %}</span>
+                </p>
                 {% include "badge/all.html" %}
             </div>
         </div>
@@ -52,7 +57,7 @@ $(function() {
         shuffle: true
     });
     var d = new Date();
-    $(".onsky").css("background", "transparent");
+{#    $(".onsky").css("background", "transparent");#}
     $(".sky").css("background", getSkyColorAt(d.getHours(), d.getMinutes()));
 });
 </script>

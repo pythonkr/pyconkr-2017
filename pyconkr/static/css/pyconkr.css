@@ -289,21 +289,21 @@ input[type=file] {
 
 .frontpage .sky {
     width: 100%;
-    height: 440px;
+    height: 500px;
 }
 
 .frontpage .onsky {
     width: 100%;
     height: 100%;
-    background: #51656F;
+    background: #002E7A;
     position: absolute;
     top: 0;
 
-    -webkit-transition: background 2000ms linear;
-    -moz-transition: background 2000ms linear;
-    -o-transition: background 2000ms linear;
-    -ms-transition: background 2000ms linear;
-    transition: background 2000ms linear;
+    /*-webkit-transition: background 2000ms linear;*/
+    /*-moz-transition: background 2000ms linear;*/
+    /*-o-transition: background 2000ms linear;*/
+    /*-ms-transition: background 2000ms linear;*/
+    /*transition: background 2000ms linear;*/
 }
 
 .frontpage .onsky .navbar {
@@ -322,20 +322,40 @@ input[type=file] {
 }
 
 .frontpage .slogan h1 {
-    color: #FFFFFF;
+    color: #FDDA24;
+    font-family: 'Montserrat', sans-serif;
     font-size: 5rem;
     line-height: 90%;
     font-weight: 700;
+    letter-spacing: -4px;
 }
 
 .frontpage .slogan h3 {
-    color: #FFFFFF;
-    font-weight: 300;
+    color: #FDDA24;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2rem;
     margin-bottom: 20px;
+    letter-spacing: -1px;
 }
 
 .frontpage .slogan h3 span {
     font-weight: 700;
+}
+
+.frontpage .slogan p {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    font-size: 1.1rem;
+    color: #FDDA24;
+    line-height: -10px;
+}
+
+.frontpage .slogan p span {
+    font-family: 'Montserrat', sans-serif
+}
+
+.frontpage .slogan p .location {
+    font-weight: bold;
 }
 
 .frontpage .background {
