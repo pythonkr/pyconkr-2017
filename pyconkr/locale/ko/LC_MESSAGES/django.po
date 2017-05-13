@@ -656,3 +656,9 @@ msgstr "튜토리얼 갱신"
 
 #~ msgid "PyCon APAC"
 #~ msgstr "파이콘 APAC"
+
+msgid "PyCon Schedule"
+msgstr "2017년 8월 12일 (토) ~ 2017년 8월 15일 (화)"
+
+msgid "PyCon Location"
+msgstr "코엑스 그랜드볼룸, 서울"
