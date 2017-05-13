@@ -11,7 +11,8 @@ from .models import SponsorLevel, Speaker, Banner
 
 def default(request):
     title = None
-    url = request.path
+    # remove i18n_patterns prefix for flatpage
+    url = request.path.replace('/' + request.LANGUAGE_CODE, '')
     if settings.FORCE_SCRIPT_NAME:
         url = url[len(settings.FORCE_SCRIPT_NAME):]
     base_content = FlatPage.objects.filter(url=url).first()
