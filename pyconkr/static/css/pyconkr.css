@@ -59,13 +59,13 @@ input[type=file] {
 .navbar {
     padding: 10px 0;
     margin-bottom: 0px !important;
-    background: none;
+    background: #002E7A;
     border: 0;
     border-radius: 0;
 }
 
 .navbar .navbar-nav>li>a {
-    font-family: 'Lato', 'Helvetica Neue', 'Apple SD Gothic Neo', 'Nanum Gothic', 'Arial', 'Apple Gothic', sans-serif;
+    font-family: 'Montserrat','Lato', 'Helvetica Neue', 'Apple SD Gothic Neo', 'Nanum Gothic', 'Arial', 'Apple Gothic', sans-serif;
     font-weight: 300;
     color: #333;
 }
@@ -146,21 +146,24 @@ input[type=file] {
     font-size: 1.25rem;
     top: 4px;
     margin: 0 4px;
+    color: #FDDA24;
 }
+
 .navbar .glyphicon-python {
     width: 1.25rem;
     height: 1.25rem;
+    color: #FDDA24;
 }
 
 
 .navbar-translucent .glyphicon-python {
-    background: url("../image/python-white.png");
+    background: url("../image/python-yellow.png");
     background-size: 100% 100%;
 }
 
 .navbar-translucent .navbar-nav>li>a {
     font-weight: 700;
-    color: #fff;
+    color: #FDDA24;
 }
 
 .navbar-translucent .nav>li>a:hover,
@@ -289,21 +292,21 @@ input[type=file] {
 
 .frontpage .sky {
     width: 100%;
-    height: 440px;
+    height: 550px;
 }
 
 .frontpage .onsky {
     width: 100%;
     height: 100%;
-    background: #51656F;
+    background: #002E7A;
     position: absolute;
     top: 0;
 
-    -webkit-transition: background 2000ms linear;
-    -moz-transition: background 2000ms linear;
-    -o-transition: background 2000ms linear;
-    -ms-transition: background 2000ms linear;
-    transition: background 2000ms linear;
+    /*-webkit-transition: background 2000ms linear;*/
+    /*-moz-transition: background 2000ms linear;*/
+    /*-o-transition: background 2000ms linear;*/
+    /*-ms-transition: background 2000ms linear;*/
+    /*transition: background 2000ms linear;*/
 }
 
 .frontpage .onsky .navbar {
@@ -311,8 +314,8 @@ input[type=file] {
     position: absolute;
     bottom: 0;
 
-    margin: 0;
-    padding: 0;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .frontpage .slogan {
@@ -322,20 +325,39 @@ input[type=file] {
 }
 
 .frontpage .slogan h1 {
-    color: #FFFFFF;
+    color: #FDDA24;
+    font-family: 'Montserrat', sans-serif;
     font-size: 5rem;
     line-height: 90%;
     font-weight: 700;
+    letter-spacing: -4px;
 }
 
 .frontpage .slogan h3 {
-    color: #FFFFFF;
-    font-weight: 300;
+    color: #FDDA24;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.1rem;
     margin-bottom: 20px;
+    letter-spacing: -1px;
 }
 
 .frontpage .slogan h3 span {
     font-weight: 700;
+}
+
+.frontpage .slogan p {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    font-size: 1.2rem;
+    color: #FDDA24;
+}
+
+.frontpage .slogan p span {
+    font-family: 'Montserrat', sans-serif
+}
+
+.frontpage .slogan p .location {
+    font-weight: bold;
 }
 
 .frontpage .background {
@@ -667,4 +689,15 @@ input[type=file] {
     0% { opacity:1; }
     50% { opacity:0; }
     100% { opacity:1; }
+}
+
+.bracket_fill, .bracket_line {
+    position: absolute;
+    z-index: 2;
+}
+
+@media (max-width: 768px) {
+    .bracket_fill {
+        display: none;
+    }
 }
