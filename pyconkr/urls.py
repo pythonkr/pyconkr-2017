@@ -24,6 +24,7 @@ admin.autodiscover()
 
 urlpatterns = [
     url(r'^robots.txt$', robots, name='robots'),
+    url(r'^summernote/', include('django_summernote.urls')),
     url(r'^admin/', include(admin.site.urls)),
 
     url(r'^accounts/', include('allauth.urls')),
