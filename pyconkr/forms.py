@@ -40,8 +40,9 @@ class SpeakerForm(forms.ModelForm):
         self.fields['image'].help_text += _('Maximum size is %(size)d MB') \
             % {'size': settings.SPEAKER_IMAGE_MAXIMUM_FILESIZE_IN_MB}
         self.fields['image'].help_text += ' / ' \
-            + _('Minimum dimension is %(dim)d x %(dim)d') \
-            % {'dim': settings.SPEAKER_IMAGE_MINIMUM_DIMENSION}
+            + _('Minimum dimension is %(width)d x %(height)d') \
+            % {'width': settings.SPEAKER_IMAGE_MINIMUM_DIMENSION[0],
+               'height': settings.SPEAKER_IMAGE_MINIMUM_DIMENSION[1]}
 
     class Meta:
         model = Speaker
@@ -71,8 +72,9 @@ class SpeakerForm(forms.ModelForm):
             if w < settings.SPEAKER_IMAGE_MINIMUM_DIMENSION[0] \
                     or h < settings.SPEAKER_IMAGE_MINIMUM_DIMENSION[1]:
                 raise forms.ValidationError(
-                    _('Minimum dimension is %(dim)d x %(dim)d')
-                    % {'dim': settings.SPEAKER_IMAGE_MINIMUM_DIMENSION}
+                    _('Minimum dimension is %(width)d x %(height)d')
+                    % {'width': settings.SPEAKER_IMAGE_MINIMUM_DIMENSION[0],
+                       'height': settings.SPEAKER_IMAGE_MINIMUM_DIMENSION[1]}
                 )
 
         return image
@@ -98,7 +100,6 @@ class ProgramForm(forms.ModelForm):
             'is_recordable': _('Photography and recording is allowed'),
             'desc': _('Description'),
         }
-
 
 
 class ProposalForm(forms.ModelForm):
@@ -165,8 +166,9 @@ class ProfileForm(forms.ModelForm):
         self.fields['image'].help_text += _('Maximum size is %(size)d MB') \
             % {'size': settings.SPEAKER_IMAGE_MAXIMUM_FILESIZE_IN_MB}
         self.fields['image'].help_text += ' / ' \
-            + _('Minimum dimension is %(dim)d x %(dim)d') \
-            % {'dim': settings.SPEAKER_IMAGE_MINIMUM_DIMENSION}
+            + _('Minimum dimension is %(width)d x %(height)d') \
+            % {'width': settings.SPEAKER_IMAGE_MINIMUM_DIMENSION[0],
+               'height': settings.SPEAKER_IMAGE_MINIMUM_DIMENSION[1]}
 
     class Meta:
         model = Profile
@@ -194,8 +196,9 @@ class ProfileForm(forms.ModelForm):
             if w < settings.SPEAKER_IMAGE_MINIMUM_DIMENSION[0] \
                     or h < settings.SPEAKER_IMAGE_MINIMUM_DIMENSION[1]:
                 raise forms.ValidationError(
-                    _('Minimum dimension is %(dim)d x %(dim)d')
-                    % {'dim': settings.SPEAKER_IMAGE_MINIMUM_DIMENSION}
+                    _('Minimum dimension is %(width)d x %(height)d')
+                    % {'width': settings.SPEAKER_IMAGE_MINIMUM_DIMENSION[0],
+                       'height': settings.SPEAKER_IMAGE_MINIMUM_DIMENSION[1]}
                 )
 
         return image
