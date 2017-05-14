@@ -19,12 +19,6 @@ class SummernoteWidgetWithCustomToolbar(SummernoteWidget):
     def template_contexts(self):
         contexts = super(SummernoteWidgetWithCustomToolbar, self).template_contexts()
         contexts['width'] = '960px'
-        contexts['toolbar'] = [
-            ['style', ['style', 'bold', 'italic', 'underline', 'clear']],
-            ['para', ['ul', 'ol', 'height']],
-            ['insert', ['link', 'hr', 'picture', 'video']],
-            ['misc', ['fullscreen', 'codeview']],
-        ]
         return contexts
 
 
