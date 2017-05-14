@@ -39,7 +39,6 @@ def default(request):
             'submenu': OrderedDict([
                 ('schedule', {'title': _('Schedule')}),
                 ('list', {'title': _('Program list')}),
-                ('preference', {'title': _('Preference survey')}),
                 ('keynote', {'title': _('Keynotes')}),
                 ('speaker', {'title': _('Speakers')}),
                 ('tutorials', {'title': _('Sprint and Tutorial')}),
@@ -53,7 +52,6 @@ def default(request):
             'submenu': OrderedDict([
                 ('map', {'title': _('Venue Map')}),
                 ('transportation', {'title': _('Transportation')}),
-                ('hotels', {'title': _('Hotels')}),
                 ('restaurants', {'title': _('Restaurants')}),
             ]),
         }),
@@ -63,7 +61,6 @@ def default(request):
             'submenu': OrderedDict([
                 ('cfp', {'title': _('Call for proposals')}),
                 ('howto', {'title': _('How to propose')}),
-                ('propose', {'title': _('Propose')}),
             ]),
         }),
         ('registration', {
