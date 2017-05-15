@@ -21,7 +21,7 @@
                     {% for option in options %}
                         <div>
                             <h3>{{ option.name }}</h3>
-                            <p>{{ option.description }}</p>
+                            <p>{% autoescape off %}{{ option.description }}{% endautoescape %}</p>
                             <p>Price: {{ option.price|intcomma }} KRW</p>
                             <p>
                             {% if option.is_soldout %}
