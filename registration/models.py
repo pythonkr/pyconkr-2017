@@ -16,7 +16,7 @@ class Option(models.Model):
     def is_soldout(self):
         return self.total <= Registration.objects.filter(option=self, payment_status__in=['paid', 'ready']).count()
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
 
@@ -35,7 +35,7 @@ class Registration(models.Model):
         default='card',
         choices=(
             ('card', u'Credit Card'),
-            ('bank', u'Bank Transfer'),
+            #('bank', u'Bank Transfer'),
             ('vbank', u'Virtual Bank Transfer'),
         )
     )
