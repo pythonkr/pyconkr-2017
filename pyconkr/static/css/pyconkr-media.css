@@ -63,7 +63,7 @@
         line-height: 30px;
     }
     .frontpage .sky {
-        height: 360px;
+        height: 425px;
     }
     .footer .col {
         text-align: center;
@@ -74,9 +74,6 @@
 }
 
 @media (max-width: 640px) {
-    .frontpage .sky {
-        height: 320px;
-    }
     .frontpage .slogan h1 {
         font-size: 4rem;
     }
@@ -87,7 +84,7 @@
 
 @media (max-width: 480px) {
     .frontpage .sky {
-        height: 280px;
+        height: 340px;
     }
     .container {
         padding-left: 5px;
@@ -101,6 +98,7 @@
 
     .frontpage .slogan h1 {
         font-size: 3rem;
+        margin-top: 30px;
     }
     .frontpage .slogan h3 {
         font-size: 1rem;
