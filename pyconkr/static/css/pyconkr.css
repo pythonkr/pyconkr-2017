@@ -59,7 +59,7 @@ input[type=file] {
 .navbar {
     padding: 10px 0;
     margin-bottom: 0px !important;
-    background: #002E7A;
+    background: none;
     border: 0;
     border-radius: 0;
 }
@@ -286,7 +286,8 @@ input[type=file] {
     position: relative;
     padding: 0;
     z-index: 1;
-    background: url("../image/milkyway.jpg");
+    /*background: url("../image/milkyway.jpg");*/
+    background-color: #002E7A;
     background-size: cover;
 }
 
