@@ -59,7 +59,7 @@ input[type=file] {
 .navbar {
     padding: 10px 0;
     margin-bottom: 0px !important;
-    background: none;
+    background: rgba(0, 40, 122, 0.85);
     border: 0;
     border-radius: 0;
 }
