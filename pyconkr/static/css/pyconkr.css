@@ -695,6 +695,7 @@ input[type=file] {
 .bracket_fill, .bracket_line {
     position: absolute;
     z-index: 2;
+    pointer-events: none;
 }
 
 @media (max-width: 768px) {
