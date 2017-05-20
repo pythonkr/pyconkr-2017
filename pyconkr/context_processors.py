@@ -88,9 +88,9 @@ def default(request):
 
                 for sk, sv in v['submenu'].items():
                     sv['path'] = '{}{}/'.format(path, sk)
-                    subpath = sv['path'][:-1]
+                    subpath = sv['path']
 
-                    if rp.startswith(subpath):
+                    if rp == subpath:
                         sv['active'] = True
                         title = sv['title']
 
