@@ -20,14 +20,14 @@ class Room(models.Model):
     def get_absolute_url(self):
         return reverse('room', args=[self.id])
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
 
 class ProgramDate(models.Model):
     day = models.DateField()
 
-    def __unicode__(self):
+    def __str__(self):
         return _date(self.day, "Y-m-d (D)")
 
 
@@ -39,7 +39,7 @@ class ProgramTime(models.Model):
     def __meta__(self):
         ordering = ['begin']
 
-    def __unicode__(self):
+    def __str__(self):
         return '%s - %s / %s' % (self.begin, self.end, self.name)
 
 
@@ -50,7 +50,7 @@ class ProgramCategory(models.Model):
     show_in_mobile = models.BooleanField(default=True)
     show_in_list = models.BooleanField(default=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
 
@@ -67,7 +67,7 @@ class SponsorLevel(models.Model):
 
     objects = SponsorLevelManager()
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
 
@@ -85,7 +85,7 @@ class Sponsor(models.Model):
     def get_absolute_url(self):
         return reverse('sponsor', args=[self.slug])
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
 
@@ -131,7 +131,7 @@ class Speaker(models.Model):
 
         return static('image/anonymous.png')
 
-    def __unicode__(self):
+    def __str__(self):
         return '%s / %s' % (self.name, self.slug)
 
 
@@ -196,7 +196,7 @@ class Program(models.Model):
         else:
             return _("Not arranged yet")
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
 
@@ -214,7 +214,7 @@ class Announcement(models.Model):
     def at(self):
         return self.announce_after if self.announce_after else self.created
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
 
 
@@ -256,7 +256,7 @@ class Proposal(models.Model):
                                 ),
                                 default='E')
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
 
 
@@ -303,7 +303,7 @@ class TutorialProposal(models.Model):
                                     ('L', _('100 people')),
                                 ))
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
 
     def get_absolute_url(self):
