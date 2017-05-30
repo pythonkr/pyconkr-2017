@@ -92,7 +92,7 @@ class PatronList(ListView):
 
     def get_queryset(self):
         queryset = super(PatronList, self).get_queryset()
-        patron_option = Option.objects.filter(name='Patron')
+        patron_option = Option.objects.filter(name='PyCon-Patron')
 
         if patron_option:
             patron_option = patron_option.first()
