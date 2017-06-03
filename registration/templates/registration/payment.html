@@ -65,7 +65,7 @@
                         }
                         handleResponse(response);
                     }.bind(this));
-                } else if(paymentMethod === 'bank') {
+                } else if(paymentMethod === 'vbank') {
                     IMP.init('{{ config.IMP_USER_CODE }}');
                     IMP.request_pay({
                         pg : 'nice',
