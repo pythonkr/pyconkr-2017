@@ -182,7 +182,7 @@ def payment_process(request):
             registration.vbank_date = confirm.get('vbank_date', None)
             registration.vbank_holder = confirm.get('vbank_holder', None)
             registration.save()
-        elif registration.payment_method == 'bank':
+        elif registration.payment_method == 'vbank':
             registration.transaction_code = request.POST.get('pg_tid')
             registration.payment_method = request.POST.get('pay_method')
             registration.payment_status = request.POST.get('status')
