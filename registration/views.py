@@ -126,6 +126,7 @@ def payment_process(request):
             email = request.user.email,
             additional_price = form.cleaned_data.get('additional_price', 0),
             company = form.cleaned_data.get('company', ''),
+            top_size = form.cleaned_data.get('top_size', ''),
             phone_number = form.cleaned_data.get('phone_number', ''),
             merchant_uid = request.POST.get('merchant_uid'),
             option = form.cleaned_data.get('option'),
