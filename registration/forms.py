@@ -21,10 +21,11 @@ class RegistrationForm(forms.ModelForm):
 
     class Meta:
         model = Registration
-        fields = ('email', 'option', 'base_price', 'name', 'company', 'phone_number', 'payment_method')
+        fields = ('email', 'option', 'base_price', 'name', 'top_size', 'company', 'phone_number', 'payment_method')
         labels = {
             'name': _('Name'),
             'option': _('Option'),
+            'top_size': _('Top Size'),
             'email': _('E-Mail'),
             'company': _('Company or Organization'),
             'phone_number':  _('Phone Number'),
@@ -38,10 +39,11 @@ class RegistrationAdditionalPriceForm(RegistrationForm):
 
     class Meta:
         model = Registration
-        fields = ('email', 'option', 'base_price', 'additional_price', 'name', 'company', 'phone_number', 'payment_method')
+        fields = ('email', 'option', 'base_price', 'additional_price', 'name', 'top_size', 'company', 'phone_number', 'payment_method')
         labels = {
             'name': _('Name'),
             'option': _('Option'),
+            'top_size': _('Top Size'),
             'additional_price': _('Additional Funding KRW'),
             'email': _('E-Mail'),
             'company': _('Company or Organization'),

@@ -37,6 +37,9 @@ msgstr "이름"
 msgid "Option"
 msgstr "옵션"
 
+msgid "Top Size"
+msgstr "상의 사이즈"
+
 #: registration/forms.py:28 registration/forms.py:46
 msgid "E-Mail"
 msgstr "이메일"
