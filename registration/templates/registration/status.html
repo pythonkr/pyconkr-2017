@@ -18,6 +18,21 @@
                     <th>{% trans "E-mail" %}</th>
                     <td>{{ registration.email }}</td>
                 </tr>
+
+                {% if registration.top_size %}
+                     <tr>
+                        <th>{% trans "Top Size" %}</th>
+                        <td>{{ registration.get_top_size_display }}</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <th>{% trans "Top Size" %}</th>
+                        <td>
+                            {% crispy form %}
+                        </td>
+                    </tr>
+                {% end %}
+
                 <tr>
                     <th>{% trans "Top Size" %}</th>
                     <td>{{ registration.get_top_size_display }}</td>
