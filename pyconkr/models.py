@@ -111,7 +111,7 @@ class Speaker(models.Model):
             "blog": "pencil",
         }
         result = []
-        for site, url in self.info.iteritems():
+        for site, url in self.info.items():
             result.append(badge.format(
                 size_class,
                 site, url,
