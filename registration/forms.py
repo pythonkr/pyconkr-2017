@@ -5,12 +5,6 @@ from .models import Registration
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Div
 
-class TopSizeForm(forms.ModelForm):
-    class Meta:
-        model = Registration
-        fields = ('top_size')
-
-
 class RegistrationForm(forms.ModelForm):
     base_price = forms.IntegerField(label=_('Base Price KRW'))
     def __init__(self, *args, **kwargs):

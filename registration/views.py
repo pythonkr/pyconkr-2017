@@ -13,7 +13,7 @@ from django.views.decorators.csrf import csrf_exempt
 from constance import config
 
 from pyconkr.helper import render_io_error
-from .forms import RegistrationForm, RegistrationAdditionalPriceForm, TopSizeForm
+from .forms import RegistrationForm, RegistrationAdditionalPriceForm
 from .models import Option, Registration
 from .iamporter import get_access_token, Iamporter, IamporterError
 
@@ -48,7 +48,6 @@ def status(request):
     context = {
         'registration': registration,
         'title': _("Registration Status"),
-        'form': TopSizeForm
     }
     return render(request, 'registration/status.html', context)
 
