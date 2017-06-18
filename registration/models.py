@@ -25,6 +25,19 @@ class Registration(models.Model):
     merchant_uid = models.CharField(max_length=32)
     option = models.ForeignKey(Option, null=True)
     name = models.CharField(max_length=100)
+    top_size = models.CharField(
+        max_length=20,
+        null=True,
+        choices=(
+            ('small', u'S(85)'),
+            ('medium', u'M(90)'),
+            ('large', u'L(95)'),
+            ('xlarge', u'XL(100)'),
+            ('2xlarge', u'2XL(105)'),
+            ('3xlarge', u'3XL(110)'),
+            ('4xlarge', u'3XL(115)'),
+        )
+    )
     email = models.EmailField(max_length=255)
     company = models.CharField(max_length=100, blank=True)
     phone_number = models.CharField(max_length=20)

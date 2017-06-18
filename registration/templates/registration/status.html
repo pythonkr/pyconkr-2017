@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load i18n humanize %}
+{% load crispy_forms_tags %}
 
 {% block content %}
     <div>
@@ -18,6 +19,21 @@
                     <th>{% trans "E-mail" %}</th>
                     <td>{{ registration.email }}</td>
                 </tr>
+
+                {% if registration.top_size %}
+                     <tr>
+                        <th>{% trans "Top Size" %}</th>
+                        <td>{{ registration.get_top_size_display }}</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <th>{% trans "Top Size" %}</th>
+                        <td>
+                            <!-- TODO: 상의 사이즈 입력 받는 기능 -->
+                        </td>
+                    </tr>
+                {% endif %}
+
                 <tr>
                     <th>{% trans "Company or Organization" %}</th>
                     <td>{{ registration.company }}</td>
