@@ -29,6 +29,7 @@ class Registration(models.Model):
         max_length=20,
         default=None,
         null=True,
+        blank=True,
         choices=(
             ('small', u'S(85)'),
             ('medium', u'M(90)'),
