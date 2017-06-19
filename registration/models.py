@@ -27,7 +27,6 @@ class Registration(models.Model):
     name = models.CharField(max_length=100)
     top_size = models.CharField(
         max_length=20,
-        null=True,
         default='',
         choices=(
             ('small', u'S(85)'),
