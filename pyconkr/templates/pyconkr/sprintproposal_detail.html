@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load thumbnail %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+<h1>
+    {{ sprint.title }}
+    {% if sprint.user == request.user %}
+    <a href="{% url 'sprint-proposal-update' %}" class="btn btn-primary">
+        <i class="fa fa-pencil-square-o"></i> {% trans "Edit" %}
+    </a>
+    {% endif %}
+</h1>
+{% endblock %}
+{% block content %}
+<div class="row proposal-detail">
+    <h3>{% trans "Sprinter" %}</h3>
+    <h4>{{ sprint.user.profile.name }} <small>{{ sprint.user.profile.organization }}</small></h4>
+    <div>
+        {{ sprint.user.profile.bio|safe }}
+    </div>
+    <hr>
+    <div>
+        <h3>{% trans "Sprint Language" %}</h3>
+        <div>{{ sprint.language|linebreaks }}</div>
+        <h3>{% trans "Project brief" %}</h3>
+        <div>{{ sprint.project_brief|linebreaks }}</div>
+    </div>
+    <hr>
+    <hr>
+    <div>
+        <h3>{% trans "Project URL" %}</h3>
+        <div>{{ sprint.project_url|linebreaks }}</div>
+    </div>
+    <hr>
+</div>
+<br>
+<a href="{% url "tutorials" %}" class="btn btn-default">
+    <span class="glyphicon glyphicon-chevron-left"></span> {% trans "Back to list" %}
+</a>
+{% if joined %}
+<a href="{% url "sprint-join" sprint.id %}?leave=1" class="btn btn-warning">
+    <span class="glyphicon glyphicon-minus"></span> {% trans "Leave this event" %}
+</a>
+{% else %}
+<a href="{% url "sprint-join" sprint.id %}" class="btn btn-primary">
+    <span class="glyphicon glyphicon-plus"></span> {% trans "Join this event" %}
+</a>
+{% endif %}
+<hr>
+<h3>{% trans "Attendees" %}</h3>
+{% if not attendees %}
+<p>{% trans "No attendees, yet." %}</p>
+{% else %}
+<ul class="attendees">
+{% for attend in attendees %}
+    <li>
+        {% if attend.picture %}
+        <img class="profile-thumb" src="/media/{{ attend.picture }}">
+        {% else %}
+        <span class="glyphicon glyphicon-user"></span>
+        {% endif %}
+        <span class="name">{{ attend.name }}</span>
+	{% if not attend.registered %}
+	<span class="label label-danger">{% trans "Not registered user" %}</span>
+	{% endif %}
+	{% if attend.waiting %}
+	<span class="label label-warning">{% trans "Waiting" %}</span>
+	{% else %}
+	<span class="label label-success">{% trans "Checked in" %}</span>
+	{% endif %}
+    </li>
+{% endfor %}
+</ul>
+<div class="clear"></div>
+{% endif %}
+{% endblock %}

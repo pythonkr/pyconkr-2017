@@ -182,7 +182,7 @@ msgstr "Profile"
 msgid "Additional information"
 msgstr "Additional information"
 
-#: pyconkr/forms.py:95 pyconkr/forms.py:147
+#: pyconkr/forms.py:95 pyconkr/forms.py:173
 msgid "Title"
 msgstr "Title"
 
@@ -229,10 +229,6 @@ msgstr "Session duration"
 #: pyconkr/forms.py:127 pyconkr/forms.py:154 pyconkr/templates/nav.html:80
 msgid "Language"
 msgstr "Language"
-
-#: pyconkr/forms.py:148
-msgid "Type"
-msgstr "Type"
 
 #: pyconkr/forms.py:149
 #: pyconkr/templates/pyconkr/tutorialproposal_detail.html:31
@@ -583,9 +579,13 @@ msgstr ""
 msgid "Checked in"
 msgstr ""
 
-#: pyconkr/templates/pyconkr/tutorialproposal_list.html:7
+#: pyconkr/templates/pyconkr/tutorialproposal_list.html:12
 msgid "Propose a tutorial"
 msgstr "Proposal a tutorial"
+
+#: pyconkr/templates/pyconkr/tutorialproposal_list.html:8
+msgid "Propose a sprint"
+msgstr "Proposal a sprint"
 
 #: pyconkr/templates/pyconkr/tutorialproposal_list.html:16
 msgid "Joined"
@@ -654,3 +654,24 @@ msgstr "12 Aug 2017 (Sat) ~ 15 Aug 2017 (Tue)"
 
 msgid "PyCon Location"
 msgstr "Coex Grand Ballroom, Seoul"
+
+msgid "Project URL"
+msgstr "Official URL for project"
+
+msgid "Project brief"
+msgstr "Brief about project"
+
+msgid "Contribution description"
+msgstr "Describe about your contribution activity in this project"
+
+msgid "Sprinter"
+msgstr "Sprint Leader"
+
+msgid "Sprint Language"
+msgstr "Language"
+
+msgid "Please be a tutorial speaker at PyCon."
+msgstr "Please be a tutorial speaker at PyCon."
+
+msgid "Please be a sprint leader at PyCon."
+msgstr "Please be a sprint leader at PyCon."
