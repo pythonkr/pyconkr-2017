@@ -7,7 +7,8 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib.auth.decorators import login_required
 from django.views.generic.base import TemplateView
 from pyconkr.views import TutorialProposalCreate, TutorialProposalDetail, \
-    TutorialProposalUpdate, TutorialProposalList, tutorial_join
+    TutorialProposalUpdate, TutorialProposalList, tutorial_join,\
+    SprintProposalCreate, SprintProposalDetail, sprint_join, SprintProposalUpdate
 
 from .views import index, schedule, robots
 from .views import RoomDetail
@@ -68,16 +69,24 @@ urlpatterns += i18n_patterns(
         TutorialProposalDetail.as_view(), name='tutorial'),
     url(r'^programs?/tutorial/(?P<pk>\d+)/join/$',
         login_required(tutorial_join), name='tutorial-join'),
+    url(r'^programs?/sprint/(?P<pk>\d+)$',
+        SprintProposalDetail.as_view(), name='sprint'),
+    url(r'^programs?/sprint/(?P<pk>\d+)/join/$',
+        login_required(sprint_join), name='sprint-join'),
     url(r'^cfp/propose/$',
         login_required(ProposalCreate.as_view()), name='propose'),
     url(r'^cfp/tutorial-propose/$',
         login_required(TutorialProposalCreate.as_view()), name='tutorial-propose'),
     url(r'^profile/proposal/$',
         login_required(ProposalDetail.as_view()), name='proposal'),
+    url(r'^cfp/sprint-propose/$',
+        login_required(SprintProposalCreate.as_view()), name='sprint-propose'),
     url(r'^profile/proposal/edit$',
         login_required(ProposalUpdate.as_view()), name='proposal-update'),
     url(r'^profile/tutorial-proposal/edit$',
         login_required(TutorialProposalUpdate.as_view()), name='tutorial-proposal-update'),
+    url(r'^profile/sprint-proposal/edit$',
+        login_required(SprintProposalUpdate.as_view()), name='sprint-proposal-update'),
     url(r'^profile$',
         login_required(ProfileDetail.as_view()), name='profile'),
     url(r'^profile/edit$',

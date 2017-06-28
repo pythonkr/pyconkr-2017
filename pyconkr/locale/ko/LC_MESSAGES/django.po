@@ -231,10 +231,6 @@ msgstr "세션 길이"
 msgid "Language"
 msgstr "언어"
 
-#: pyconkr/forms.py:148
-msgid "Type"
-msgstr "종류"
-
 #: pyconkr/forms.py:149
 #: pyconkr/templates/pyconkr/tutorialproposal_detail.html:31
 msgid "Brief"
@@ -588,7 +584,11 @@ msgstr "대기자"
 msgid "Checked in"
 msgstr "참석자"
 
-#: pyconkr/templates/pyconkr/tutorialproposal_list.html:7
+#: pyconkr/templates/pyconkr/tutorialproposal_list.html:8
+msgid "Propose a sprint"
+msgstr "스프린트 제안하기"
+
+#: pyconkr/templates/pyconkr/tutorialproposal_list.html:12
 msgid "Propose a tutorial"
 msgstr "튜토리얼 제안하기"
 
@@ -662,3 +662,24 @@ msgstr "2017년 8월 12일 (토) ~ 2017년 8월 15일 (화)"
 
 msgid "PyCon Location"
 msgstr "코엑스 그랜드볼룸, 서울"
+
+msgid "Project URL"
+msgstr "프로젝트 공식 URL"
+
+msgid "Project brief"
+msgstr "오픈소스 프로젝트에 대한 간단한 설명"
+
+msgid "Contribution description"
+msgstr "이 프로젝트에서의 자신의 기여 활동 내용"
+
+msgid "Sprinter"
+msgstr "진행자"
+
+msgid "Sprint Language"
+msgstr "언어"
+
+msgid "Please be a tutorial speaker at PyCon."
+msgstr "파이콘의 튜토리얼 진행자가 되어주세요."
+
+msgid "Please be a sprint leader at PyCon."
+msgstr "파이콘의 스프린트 진행자가 되어주세요."

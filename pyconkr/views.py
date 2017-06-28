@@ -14,12 +14,13 @@ from django.views.decorators.cache import never_cache
 from django.views.generic import ListView, DetailView, UpdateView, CreateView
 from datetime import datetime, timedelta
 import random
-from .forms import (EmailLoginForm, SpeakerForm, ProgramForm,
+from .forms import (EmailLoginForm, SpeakerForm, ProgramForm, SprintProposalForm,
                     ProposalForm, ProfileForm, TutorialProposalForm)
 from .helper import sendEmailToken
 from .models import (Room, Program, ProgramDate, ProgramTime, ProgramCategory,
                      Speaker, Sponsor, Announcement, Preference, TutorialProposal,
-                     EmailToken, Profile, Proposal, TutorialCheckin)
+                     SprintProposal, EmailToken, Profile, Proposal, TutorialCheckin,
+                     SprintCheckin)
 from registration.models import Registration, Option
 
 logger = logging.getLogger(__name__)
@@ -289,8 +290,12 @@ class ProfileDetail(DetailView):
             payment_status__in=['paid', 'ready']
         ).exists()
         has_proposal = Proposal.objects.filter(user=self.request.user).exists()
+        has_tutorial = SprintProposal.objects.filter(user=self.request.user).exists()
+        has_sprint = TutorialProposal.objects.filter(user=self.request.user).exists()
         context['is_registered'] = is_registered
         context['has_proposal'] = has_proposal
+        context['has_tutorial'] = has_tutorial
+        context['has_sprint'] = has_sprint
         context['title'] = _("Profile")
         return context
 
@@ -371,10 +376,13 @@ class TutorialProposalList(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(TutorialProposalList, self).get_context_data(**kwargs)
-
+        context['tutorials'] = TutorialProposal.objects.filter(confirmed=True).all()
+        context['sprints'] = SprintProposal.objects.filter(confirmed=True).all()
         if self.request.user.is_authenticated():
             proposal = TutorialProposal.objects.filter(user=self.request.user)
-            context['show_propose_button'] = not proposal.exists()
+            sprint = SprintProposal.objects.filter(user=self.request.user)
+            context['show_tutorial_propose_button'] = not proposal.exists()
+            context['show_sprint_propose_button'] = not sprint.exists()
             context['joined_tutorials'] = TutorialCheckin.objects.filter(user=self.request.user).values_list('tutorial_id', flat=True)
         return context
 
@@ -399,6 +407,28 @@ class TutorialProposalCreate(SuccessMessageMixin, CreateView):
 
     def get_success_url(self):
         return reverse('tutorial', args=(self.object.id,))
+
+
+class SprintProposalCreate(SuccessMessageMixin, CreateView):
+    form_class = SprintProposalForm
+    template_name = "pyconkr/proposal_form.html"
+    success_message = _("Sprint proposal successfully created.")
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        form.save()
+        return super(SprintProposalCreate, self).form_valid(form)
+
+    def dispatch(self, request, *args, **kwargs):
+        sprint = SprintProposal.objects.filter(user=request.user)
+        if sprint.exists():
+            return redirect('sprint', sprint.first().id)
+        if request.user.profile.name == '':
+            return redirect('profile_edit')
+        return super(SprintProposalCreate, self).dispatch(request, *args, **kwargs)
+
+    def get_success_url(self):
+        return reverse('sprint', args=(self.object.id,))
 
 
 class TutorialProposalDetail(DetailView):
@@ -470,3 +500,63 @@ def tutorial_join(request, pk):
         tc.save()
 
     return redirect('tutorial', pk)
+
+
+class SprintProposalDetail(DetailView):
+    model = SprintProposal
+    context_object_name = 'sprint'
+
+    def get_context_data(self, **kwargs):
+        context = super(SprintProposalDetail, self).get_context_data(**kwargs)
+        checkin_ids = \
+        SprintCheckin.objects.filter(sprint=self.object).\
+                                     order_by('id').values_list('id',flat=True)
+        limit_bar_id = 65539
+        attendees = SprintCheckin.objects.filter(sprint=self.object)
+        attendees = [{'name': x.user.profile.name if x.user.profile.name != '' else
+                      x.user.email.split('@')[0],
+                      'picture': x.user.profile.image,
+                      'registered':
+                      Registration.objects.filter(user=x.user,
+                      payment_status='paid').exists(),
+                      'waiting': True if x.id > limit_bar_id else False
+                     } for x in attendees]
+        context['attendees'] = attendees
+
+        if self.request.user.is_authenticated():
+            context['joined'] = \
+                SprintCheckin.objects.filter(user=self.request.user, sprint=self.object).exists()
+        else:
+            context['joined'] = False
+
+        return context
+
+
+class SprintProposalUpdate(SuccessMessageMixin, UpdateView):
+    model = SprintProposal
+    form_class = SprintProposalForm
+    template_name = "pyconkr/proposal_form.html"
+    success_message = _("Tutorial proposal successfully updated.")
+
+    def get_object(self, queryset=None):
+        return get_object_or_404(SprintProposal, pk=self.request.user.sprintproposal.pk)
+
+    def get_context_data(self, **kwargs):
+        context = super(SprintProposalUpdate, self).get_context_data(**kwargs)
+        context['title'] = _("Update tutorial")
+        return context
+
+    def get_success_url(self):
+        return reverse('sprint', args=(self.object.id,))
+
+
+def sprint_join(request, pk):
+    sprint = get_object_or_404(SprintProposal, pk=pk)
+
+    if request.GET.get('leave'):
+        SprintCheckin.objects.filter(user=request.user, sprint=sprint).delete()
+    else:
+        sc = SprintCheckin(user=request.user, sprint=sprint)
+        sc.save()
+
+    return redirect('sprint', pk)

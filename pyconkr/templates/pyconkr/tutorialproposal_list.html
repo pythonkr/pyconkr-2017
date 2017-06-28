@@ -2,13 +2,9 @@
 {% load i18n %}
 
 {% block content %}
-{% if show_propose_button %}
-<a href="{% url "tutorial-propose" %}" class="btn btn-primary">
-    <span class="glyphicon glyphicon-plus"></span> {% trans "Propose a tutorial" %}
-</a>
-{% endif %}
+<h2>Tutorials</h2>
 <ul>
-  {% for tutorial in object_list %}
+  {% for tutorial in tutorials %}
   <li>
     <span class="label label-info">{{ tutorial.get_type_display }}</span>
     <a href="{{ tutorial.get_absolute_url }}">{{ tutorial.title }}</a>
@@ -18,4 +14,26 @@
   </li>
   {% endfor %}
 </ul>
+<h2>Sprints</h2>
+<ul>
+  {% for tutorial in sprints %}
+  <li>
+    <span class="label label-info">{{ tutorial.get_type_display }}</span>
+    <a href="{{ tutorial.get_absolute_url }}">{{ tutorial.title }}</a>
+    {% if tutorial.id in joined_tutorials %}
+    <span class="badge">{% trans "Joined" %}</span>
+    {% endif %}
+  </li>
+  {% endfor %}
+</ul>
+{% if show_sprint_propose_button %}
+<a href="{% url "sprint-propose" %}" class="btn btn-primary">
+    <span class="glyphicon glyphicon-plus"></span> {% trans "Propose a sprint" %}
+</a>
+{% endif %}
+{% if show_tutorial_propose_button %}
+<a href="{% url "tutorial-propose" %}" class="btn btn-primary">
+    <span class="glyphicon glyphicon-plus"></span> {% trans "Propose a tutorial" %}
+</a>
+{% endif %}
 {% endblock %}
