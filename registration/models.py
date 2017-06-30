@@ -37,7 +37,7 @@ class Registration(models.Model):
             ('xlarge', u'XL(100)'),
             ('2xlarge', u'2XL(105)'),
             ('3xlarge', u'3XL(110)'),
-            ('4xlarge', u'3XL(115)'),
+            ('4xlarge', u'4XL(115)'),
         )
     )
     email = models.EmailField(max_length=255)
