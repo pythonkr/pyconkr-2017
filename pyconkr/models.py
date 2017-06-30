@@ -268,13 +268,6 @@ class TutorialProposal(models.Model):
     desc = models.TextField()
     comment = models.TextField(max_length=4000, null=True, blank=True)
 
-    type = models.CharField(max_length=1,
-                            default='T',
-                            choices=(
-                                ('T', _('Tutorial')),
-                                ('S', _('Sprint')),
-                            ))
-
     difficulty = models.CharField(max_length=1,
                                   choices=(
                                       ('B', _('Beginner')),
@@ -302,12 +295,31 @@ class TutorialProposal(models.Model):
                                     ('M', _('45 people')),
                                     ('L', _('100 people')),
                                 ))
+    confirmed = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title
 
     def get_absolute_url(self):
         return reverse('tutorial', args=[self.id])
+
+
+class SprintProposal(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    title = models.CharField(max_length=255)
+    language = models.CharField(max_length=255)
+    project_url = models.CharField(max_length=1024)
+    project_brief = models.TextField(max_length=1000)
+    contribution_desc = models.TextField()
+    comment = models.TextField(max_length=4000, null=True, blank=True)
+    confirmed = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('sprint', args=[self.id])
 
 
 class Profile(models.Model):
@@ -366,3 +378,11 @@ class TutorialCheckin(models.Model):
 
     class Meta:
         unique_together = ('user', 'tutorial')
+
+
+class SprintCheckin(models.Model):
+    user = models.ForeignKey(User)
+    sprint = models.ForeignKey(SprintProposal)
+
+    class Meta:
+        unique_together = ('user', 'sprint')

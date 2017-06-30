@@ -11,7 +11,7 @@ from sorl.thumbnail.admin import AdminImageMixin
 from .models import (Room, Program, ProgramTime, ProgramDate, ProgramCategory,
                      Speaker, Sponsor, SponsorLevel, Preference,
                      Profile, Announcement, EmailToken, Proposal, Banner,
-                     TutorialProposal, TutorialCheckin, )
+                     TutorialProposal, TutorialCheckin, SprintProposal)
 from .actions import convert_proposal_to_program
 
 
@@ -139,6 +139,23 @@ class TutorialProposalAdmin(admin.ModelAdmin):
     list_display = ('user', 'title', 'difficulty', 'duration', 'language', 'capacity')
     actions = [convert_proposal_to_program]
 admin.site.register(TutorialProposal, TutorialProposalAdmin)
+
+
+class SprintProposalAdminForm(forms.ModelForm):
+    class Meta:
+        model = SprintProposal
+        fields = '__all__'
+        widgets = {
+            'contribution_desc': SummernoteWidgetWithCustomToolbar(),
+            'comment': SummernoteWidgetWithCustomToolbar(),
+        }
+
+
+class SprintProposalAdmin(admin.ModelAdmin):
+    form = SprintProposalAdminForm
+    list_display = ('title', 'language', 'project_url', 'project_brief', 'contribution_desc')
+    actions = [convert_proposal_to_program]
+admin.site.register(SprintProposal, SprintProposalAdmin)
 
 
 class UserAdmin(BaseUserAdmin):

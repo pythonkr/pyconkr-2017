@@ -6,7 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 from django_summernote.widgets import SummernoteInplaceWidget
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
-from pyconkr.models import TutorialProposal
+from pyconkr.models import SprintProposal, TutorialProposal
 from .models import Speaker, Program, Proposal, Profile
 
 
@@ -129,6 +129,30 @@ class ProposalForm(forms.ModelForm):
         }
 
 
+class SprintProposalForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(SprintProposalForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_method = 'post'
+        self.helper.add_input(Submit('submit', _('Submit')))
+
+    class Meta:
+        model = SprintProposal
+        fields = ('title', 'language', 'project_url', 'project_brief', 'contribution_desc',)
+        widgets = {
+            'contribution_desc': SummernoteInplaceWidget(),
+            'comment': SummernoteInplaceWidget(),
+        }
+
+        labels = {
+            'title': _('Title'),
+            'language': _('Language'),
+            'project_url': _('Project URL'),
+            'project_brief': _('Project brief'),
+            'contribution_desc': _('Contribution description')
+        }
+
+
 class TutorialProposalForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(TutorialProposalForm, self).__init__(*args, **kwargs)
@@ -138,7 +162,7 @@ class TutorialProposalForm(forms.ModelForm):
 
     class Meta:
         model = TutorialProposal
-        fields = ('title', 'type', 'brief', 'desc', 'difficulty', 'duration', 'language', 'capacity', )
+        fields = ('title', 'brief', 'desc', 'difficulty', 'duration', 'language', 'capacity', )
         widgets = {
             'desc': SummernoteInplaceWidget(),
             'comment': SummernoteInplaceWidget(),
@@ -146,7 +170,6 @@ class TutorialProposalForm(forms.ModelForm):
 
         labels = {
             'title': _('Title'),
-            'type': _('Type'),
             'brief': _('Brief'),
             'desc': _('Detailed description'),
 
