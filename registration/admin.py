@@ -60,7 +60,7 @@ def cancel_registration(modeladmin, request, queryset):
             continue
 
         if not obj.option.is_cancelable:
-            obj.cancel_reason = u'취소 물가능 옵션 (얼리버드 등)'
+            obj.cancel_reason = u'취소 불가능 옵션 (얼리버드 등)'
             results.append(obj)
             continue
 
