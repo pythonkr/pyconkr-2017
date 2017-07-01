@@ -43,6 +43,20 @@
             {% else %}
             <p>{% trans "Please be a session speaker at PyCon." %} <a href="{% url 'propose' %}">{% trans "Submit a new proposal" %}</a></p>
             {% endif %}
+
+            <h4>Tutorial</h4>
+            {% if has_tutorial %}
+            <p>{% trans "Thank you for submitting." %} <a href="{% url 'tutorial-propose' %}">{% trans "Check my proposal" %}</a></p>
+            {% else %}
+            <p>{% trans "Please be a tutorial speaker at PyCon." %} <a href="{% url 'tutorial-propose' %}">{% trans "Submit a new proposal" %}</a></p>
+            {% endif %}
+
+            <h4>Sprint</h4>
+            {% if has_sprint %}
+            <p>{% trans "Thank you for submitting." %} <a href="{% url 'sprint-propose' %}">{% trans "Check my proposal" %}</a></p>
+            {% else %}
+            <p>{% trans "Please be a sprint leader at PyCon." %} <a href="{% url 'sprint-propose' %}">{% trans "Submit a new proposal" %}</a></p>
+            {% endif %}
         </div>
     {% endif %}
 </div>
