@@ -7,7 +7,6 @@ from datetime import datetime
 from .iamporter import get_access_token, Iamporter, IamporterError
 
 from .models import Registration, Option
-from .views import _is_ticket_open
 
 
 def send_bankpayment_alert_email(modeladmin, request, queryset):
@@ -49,8 +48,6 @@ def cancel_registration(modeladmin, request, queryset):
     access_token = get_access_token(config.IMP_API_KEY, config.IMP_API_SECRET)
     imp_client = Iamporter(access_token)
 
-    early_bird_option = Option.objects.get(name='PyCon-Earlybird')
-
     for obj in queryset:
         if obj.payment_method != 'card':
             obj.cancel_reason = u'카드 결제만 취소 가능'
@@ -62,13 +59,13 @@ def cancel_registration(modeladmin, request, queryset):
             results.append(obj)
             continue
 
-        if obj.option == early_bird_option:
-            obj.cancel_reason = u'얼리버드 취소 불가능'
+        if not obj.option.is_cancelable:
+            obj.cancel_reason = u'취소 물가능 옵션 (얼리버드 등)'
             results.append(obj)
             continue
 
-        if not _is_ticket_open():
-            obj.cancel_reason = u'등록기간이 이미 지났으므로 취소 불가능'
+        if obj.option.cancelable_date and obj.option.cancelable_date < now:
+            obj.cancel_reason = u'취소가능일자가 아니므로 취소 불가능'
             results.append(obj)
             continue
 
