@@ -11,6 +11,8 @@ class Option(models.Model):
     price = models.IntegerField()
     has_additional_price = models.BooleanField(default=False)
     total = models.IntegerField(default=500)
+    is_cancelable = models.BooleanField(default=False)
+    cancelable_date = models.DateTimeField(null=True)
 
     @property
     def is_soldout(self):
