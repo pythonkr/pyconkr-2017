@@ -102,7 +102,7 @@ cancel_registration.short_description = "Cancel registration"
 
 
 class OptionAdmin(admin.ModelAdmin):
-    list_display = ('name', 'is_active', 'price')
+    list_display = ('name', 'is_active', 'price', 'is_cancelable', 'cancelable_date')
     list_editable = ('is_active',)
     ordering = ('id',)
 admin.site.register(Option, OptionAdmin)
