@@ -35,12 +35,13 @@ class ProgramTime(models.Model):
     name = models.CharField(max_length=100)
     begin = models.TimeField()
     end = models.TimeField()
+    day = models.ForeignKey(ProgramDate, null=True, blank=True)
 
     def __meta__(self):
         ordering = ['begin']
 
     def __str__(self):
-        return '%s - %s / %s' % (self.begin, self.end, self.name)
+        return '%s - %s / %s / %s' % (self.begin, self.end, self.name, self.day)
 
 
 class ProgramCategory(models.Model):

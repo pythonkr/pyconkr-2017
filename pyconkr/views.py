@@ -47,6 +47,8 @@ def schedule(request):
         wide[d] = {}
         narrow[d] = {}
         for t in times:
+            if t.day_id != d.id:
+                continue
             wide[d][t] = {}
             narrow[d][t] = {}
             for r in rooms:
