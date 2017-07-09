@@ -35,8 +35,8 @@ admin.site.register(ProgramDate, ProgramDateAdmin)
 
 
 class ProgramTimeAdmin(TranslationAdmin):
-    list_display = ('id', 'name', 'begin', 'end',)
-    list_editable = ('name',)
+    list_display = ('id', 'name', 'begin', 'end', 'day')
+    list_editable = ('name', 'day')
     ordering = ('begin',)
 admin.site.register(ProgramTime, ProgramTimeAdmin)
 
