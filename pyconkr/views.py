@@ -37,7 +37,7 @@ def index(request):
 
 def schedule(request):
     dates = ProgramDate.objects.all()
-    times = ProgramTime.objects.all()
+    times = ProgramTime.objects.all().order_by('begin')
     rooms = Room.objects.all()
 
     wide = {}
