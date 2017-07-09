@@ -112,6 +112,9 @@ class Speaker(models.Model):
             "blog": "pencil",
         }
         result = []
+        if type(self.info) == str:
+            return '<div class="badges">{}</div>'.format(' '.join(result))
+        
         for site, url in self.info.items():
             result.append(badge.format(
                 size_class,
