@@ -383,8 +383,6 @@ class TutorialProposalList(ListView):
         if self.request.user.is_authenticated():
             proposal = TutorialProposal.objects.filter(user=self.request.user)
             sprint = SprintProposal.objects.filter(user=self.request.user)
-            context['show_tutorial_propose_button'] = not proposal.exists()
-            context['show_sprint_propose_button'] = not sprint.exists()
             context['joined_tutorials'] = TutorialCheckin.objects.filter(user=self.request.user).values_list('tutorial_id', flat=True)
         return context
 
