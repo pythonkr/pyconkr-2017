@@ -675,3 +675,6 @@ msgstr "Please be a tutorial speaker at PyCon."
 
 msgid "Please be a sprint leader at PyCon."
 msgstr "Please be a sprint leader at PyCon."
+
+msgid "Schedule English Label"
+msgstr "English"
