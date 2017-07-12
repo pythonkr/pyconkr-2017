@@ -172,6 +172,7 @@ class Program(models.Model):
     category = models.ForeignKey(ProgramCategory, null=True, blank=True)
 
     is_recordable = models.BooleanField(default=True)
+    is_breaktime = models.BooleanField(default=False)
 
     def get_absolute_url(self):
         return reverse('program', args=[self.id])

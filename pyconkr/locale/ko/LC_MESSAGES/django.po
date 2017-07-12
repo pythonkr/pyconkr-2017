@@ -683,3 +683,6 @@ msgstr "파이콘의 튜토리얼 진행자가 되어주세요."
 
 msgid "Please be a sprint leader at PyCon."
 msgstr "파이콘의 스프린트 진행자가 되어주세요."
+
+msgid "Schedule English Label"
+msgstr "영어"

@@ -31,6 +31,9 @@
             {% if s.pdf_url %}
             <small><a href="{{ s.pdf_url }}"><span class="label label-danger">{% trans "PDF link" %}</span></a></small>
             {% endif %}
+            {% if not s.is_breaktime and s.language == 'E' %}
+            <small><span class="label label-default">{% trans "Schedule English Label" %}</span></small>
+            {% endif %}
         </td>
         {% endfor %}
       </tr>
@@ -47,6 +50,9 @@
             {% endif %}
             {% if s.pdf_url %}
             <small><a href="{{ s.pdf_url }}"><span class="label label-danger">{% trans "PDF link" %}</span></a></small>
+            {% endif %}
+            {% if not s.is_breaktime and s.language == 'E' %}
+                <small><span class="label label-default">{% trans "Schedule English Label" %}</span></small>
             {% endif %}
         </td>
       </tr>
@@ -98,6 +104,9 @@
             {% endif %}
             {% if s.pdf_url %}
             <small><a href="{{ s.pdf_url }}"><span class="label label-danger">{% trans "PDF link" %}</span></a></small>
+            {% endif %}
+            {% if not s.is_breaktime and s.language == 'E' %}
+              <small><span class="label label-default">{% trans "Schedule English Label" %}</span></small>
             {% endif %}
           </div>
           {% if s.speakers %}
