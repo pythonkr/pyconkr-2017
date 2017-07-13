@@ -59,6 +59,16 @@ def cancel_registration(modeladmin, request, queryset):
             results.append(obj)
             continue
 
+        if not obj.option.is_cancelable:
+            obj.cancel_reason = u'취소 불가능 옵션 (얼리버드 등)'
+            results.append(obj)
+            continue
+
+        if obj.option.cancelable_date and obj.option.cancelable_date < now:
+            obj.cancel_reason = u'취소가능일자가 아니므로 취소 불가능'
+            results.append(obj)
+            continue
+
         try:
             imp_params = dict(
                 merchant_uid=obj.merchant_uid,
@@ -92,7 +102,7 @@ cancel_registration.short_description = "Cancel registration"
 
 
 class OptionAdmin(admin.ModelAdmin):
-    list_display = ('name', 'is_active', 'price')
+    list_display = ('name', 'is_active', 'price', 'is_cancelable', 'cancelable_date')
     list_editable = ('is_active',)
     ordering = ('id',)
 admin.site.register(Option, OptionAdmin)

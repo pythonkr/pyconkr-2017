@@ -49,4 +49,3 @@ class RegistrationTest(TestCase):
         self.assertEqual(response.status_code, 200)
         registration = Registration.objects.get(id=registration.id)
         self.assertEqual(registration.payment_status, 'paid') 
-
