@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.core.mail import send_mass_mail
 from django.shortcuts import render
 from constance import config
-from datetime import datetime
+from django.utils import timezone
 from .iamporter import get_access_token, Iamporter, IamporterError
 
 from .models import Registration, Option
@@ -33,7 +33,7 @@ def cancel_registration(modeladmin, request, queryset):
     messages = []
     subject = u"PyCon Korea 2017 결제 취소 알림"
     body = u"""
-안녕하세요. PyCon APAC 준비위원회입니다.
+안녕하세요. PyCon Korea 준비위원회입니다.
 
 결제가 취소되었음을 알려드립니다.
 결제 대행사 사정에 따라 다소 늦게 카드 취소가 이뤄질 수 있습니다.
@@ -44,7 +44,7 @@ def cancel_registration(modeladmin, request, queryset):
     from_email = "pycon@pycon.kr"
 
     results = []
-    now = datetime.now()
+    now = timezone.now()
     access_token = get_access_token(config.IMP_API_KEY, config.IMP_API_SECRET)
     imp_client = Iamporter(access_token)
 
