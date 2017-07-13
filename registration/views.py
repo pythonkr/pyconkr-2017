@@ -44,7 +44,7 @@ def index(request):
 def status(request):
     registration = Registration.objects.filter(user=request.user)
     if registration:
-        registration = registration[0]
+        registration = registration.latest('created')
     context = {
         'registration': registration,
         'title': _("Registration Status"),
