@@ -50,7 +50,7 @@
                     <th>{% trans "Price" %}</th>
                     <td>{{ registration.option.price|intcomma }} KRW</td>
                 </tr>
-                {% if registration.additional_price != 0 %}
+                {% if registration.additional_price > 0 %}
                     <tr>
                         <th>{% trans "Additional Funding" %}</th>
                         <td>{{ registration.additional_price|intcomma }} KRW</td>
@@ -83,6 +83,12 @@
                         <th>{% trans "Price" %}</th>
                         <td>{{ registration.option.price|intcomma }} KRW</td>
                     </tr>
+                    {% if registration.additional_price > 0 %}
+                        <tr>
+                            <th>{% trans "Additional Funding" %}</th>
+                            <td>{{ registration.additional_price|intcomma }} KRW</td>
+                        </tr>
+                    {% endif %}
                     <tr>
                         <th>{% trans "Transaction ID" %}</th>
                         <td>{{ registration.merchant_uid }}</td>
