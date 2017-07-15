@@ -11,4 +11,6 @@ urlpatterns = [
     url(r'^payment/callback/$', views.payment_callback, name='registration_callback'),
     url(r'^receipt/$',
         login_required(views.RegistrationReceiptDetail.as_view()), name='registration_receipt'),
+    url(r'^payment/manual/(\d+)/$', views.manual_registration, name='manual_registration'),
+    url(r'^payment/manual/payment/$', views.manual_payment_process, name='manual_payment'),
 ]

@@ -686,3 +686,6 @@ msgstr "파이콘의 스프린트 진행자가 되어주세요."
 
 msgid "Schedule English Label"
 msgstr "영어"
+
+msgid "Manual Payment"
+msgstr "임시 결제"
