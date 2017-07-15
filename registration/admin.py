@@ -6,7 +6,7 @@ from constance import config
 from django.utils import timezone
 from .iamporter import get_access_token, Iamporter, IamporterError
 
-from .models import Registration, Option
+from .models import Registration, Option, ManualPayment
 
 
 def send_bankpayment_alert_email(modeladmin, request, queryset):
@@ -119,3 +119,13 @@ class RegistrationAdmin(admin.ModelAdmin):
     ordering = ('id',)
     actions = (send_bankpayment_alert_email, cancel_registration)
 admin.site.register(Registration, RegistrationAdmin)
+
+
+class ManualPaymentAdmin(admin.ModelAdmin):
+    list_display = ('title', 'payment_status', 'user', )
+    list_filter = ('payment_status', )
+    search_fields = ('user__email', 'description', )
+
+    class Meta:
+        model = ManualPayment
+admin.site.register(ManualPayment, ManualPaymentAdmin)

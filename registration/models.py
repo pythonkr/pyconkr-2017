@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class Option(models.Model):
     name = models.CharField(max_length=50)
     description = models.TextField()
@@ -78,3 +79,37 @@ class Registration(models.Model):
     modified = models.DateTimeField(auto_now=True)
     confirmed = models.DateTimeField(null=True, blank=True)
     canceled = models.DateTimeField(null=True, blank=True)
+
+
+class ManualPayment(models.Model):
+    user = models.ForeignKey(User)
+    title = models.CharField(max_length=100)
+    price = models.PositiveIntegerField(null=False)
+    merchant_uid = models.CharField(max_length=32, db_index=True, blank=True)
+    imp_uid = models.CharField(max_length=32, null=True, blank=True)
+    transaction_code = models.CharField(max_length=36, blank=True)
+    payment_method = models.CharField(
+        max_length=20,
+        default='card',
+        choices=(
+            ('card', u'Credit Card'),
+        )
+    )
+    payment_status = models.CharField(
+        max_length=10,
+        default='ready',
+        choices=(
+            ('ready', u'Ready'),
+            ('paid', u'Paid'),
+            ('cancelled', u'Cancelled'),
+        )
+    )
+    payment_message = models.CharField(max_length=255, null=True, blank=True)
+    description = models.TextField(blank=True)
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
+    confirmed = models.DateTimeField(null=True, blank=True)
+    canceled = models.DateTimeField(null=True, blank=True)
+
+    def __str__(self):
+        return '({}) {} ({})원'.format(self.payment_status.upper(), self.title, self.price)

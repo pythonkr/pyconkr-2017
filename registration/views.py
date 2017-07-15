@@ -5,25 +5,27 @@ from uuid import uuid4
 
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, JsonResponse
+from django.utils import timezone
 from django.utils.translation import ugettext as _
-from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.views.generic import DetailView
 from django.views.decorators.csrf import csrf_exempt
 from constance import config
 
 from pyconkr.helper import render_io_error
-from .forms import RegistrationForm, RegistrationAdditionalPriceForm
-from .models import Option, Registration
+from .forms import RegistrationForm, RegistrationAdditionalPriceForm, ManualPaymentForm
+from .models import Option, Registration, ManualPayment
 from .iamporter import get_access_token, Iamporter, IamporterError
 
 logger = logging.getLogger(__name__)
 payment_logger = logging.getLogger('payment')
 
+
 def _is_ticket_open():
     open_datetime = datetime.datetime.combine(config.REGISTRATION_OPEN, config.REGISTRATION_OPEN_TIME)
     close_datetime = datetime.datetime.combine(config.REGISTRATION_CLOSE, config.REGISTRATION_CLOSE_TIME)
     return True if open_datetime <= datetime.datetime.now() <= close_datetime else False
+
 
 def index(request):
     if request.user.is_authenticated():
@@ -83,6 +85,7 @@ def payment(request, option_id):
         'amount': product.price,
         'vat': 0,
     })
+
 
 @login_required
 def payment_process(request):
@@ -208,6 +211,7 @@ def payment_process(request):
             'success': True,
         })
 
+
 @csrf_exempt
 def payment_callback(request):
     merchant_uid = request.POST.get('merchant_uid')
@@ -225,6 +229,104 @@ def payment_callback(request):
     registration.payment_status = result['status']
     registration.save()
     return HttpResponse()
+
+
+@login_required
+def manual_registration(request, manual_payment_id):
+    mp = get_object_or_404(ManualPayment, pk=manual_payment_id)
+    uid = str(uuid4()).replace('-', '')
+    form = ManualPaymentForm(initial={
+        'title': mp.title,
+        'base_price': mp.price,
+        'email': request.user.email,
+    })
+
+    return render(request, 'registration/manual_payment.html', {
+        'title': _('Registration'),
+        'manual_payment_id': manual_payment_id,
+        'form': form,
+        'uid': uid,
+        'product_name': mp.title,
+        'amount': mp.price,
+        'vat': 0,
+        'payment_status': mp.payment_status,
+    })
+
+
+@login_required
+def manual_payment_process(request):
+    if request.method == 'GET':
+        return redirect('registration_index')
+
+    payment_logger.debug(request.POST)
+    form = ManualPaymentForm(request.POST)
+
+    if not form.is_valid():
+        form_errors_string = "\n".join(('%s:%s' % (k, v[0]) for k, v in form.errors.items()))
+        return JsonResponse({
+            'success': False,
+            'message': form_errors_string,  # TODO : ...
+        })
+
+    # check already payment
+    try:
+        mp = ManualPayment.objects.get(pk=request.POST.get('manual_payment_id'))
+    except ManualPayment.DoesNotExist:
+        return JsonResponse({
+            'success': False,
+            'message': '결제할 내역이 존재하지 않습니다. 다시 한번 확인해 주시기 바랍니다.',
+        })
+
+    if mp.payment_status == 'paid':
+        return JsonResponse({
+            'success': False,
+            'message': '이미 지불되었습니다. 문의사항은 support@pycon.kr 로 문의주시기 바랍니다.',
+        })
+
+    # Only card
+    try:
+        access_token = get_access_token(config.IMP_API_KEY, config.IMP_API_SECRET)
+        imp_client = Iamporter(access_token)
+
+        imp_params = dict(
+            token=request.POST.get('token'),
+            merchant_uid=request.POST.get('merchant_uid'),
+            amount=mp.price,
+            card_number=request.POST.get('card_number'),
+            expiry=request.POST.get('expiry'),
+            birth=request.POST.get('birth'),
+            pwd_2digit=request.POST.get('pwd_2digit'),
+            customer_uid=form.cleaned_data.get('email'),
+            name=mp.title,
+            buyer_name=request.POST.get('name', ''),
+            buyer_email=request.POST.get('email'),
+            buyer_tel=request.POST.get('phone_number', '')
+        )
+
+        imp_client.foreign(**imp_params)
+        confirm = imp_client.find_by_merchant_uid(request.POST.get('merchant_uid'))
+
+        if confirm['amount'] != mp.price:
+            return render_io_error("amount is not same as product.price. it will be canceled")
+
+        mp.transaction_code = confirm.get('pg_tid')
+        mp.imp_uid = confirm.get('imp_uid')
+        mp.merchant_uid = confirm.get('merchant_uid')
+        mp.payment_method = confirm.get('pay_method')
+        mp.payment_status = confirm.get('status')
+        mp.payment_message = confirm.get('fail_reason')
+        mp.confirmed = timezone.now()
+        mp.save()
+    except IamporterError as e:
+        return JsonResponse({
+            'success': False,
+            'code': e.code,
+            'message': e.message,
+        })
+    else:
+        return JsonResponse({
+            'success': True,
+        })
 
 
 class RegistrationReceiptDetail(DetailView):
