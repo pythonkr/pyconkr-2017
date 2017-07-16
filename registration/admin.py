@@ -125,6 +125,7 @@ class ManualPaymentAdmin(admin.ModelAdmin):
     list_display = ('title', 'payment_status', 'user', )
     list_filter = ('payment_status', )
     search_fields = ('user__email', 'description', )
+    raw_id_fields = ('user', )
 
     class Meta:
         model = ManualPayment

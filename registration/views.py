@@ -233,7 +233,7 @@ def payment_callback(request):
 
 @login_required
 def manual_registration(request, manual_payment_id):
-    mp = get_object_or_404(ManualPayment, pk=manual_payment_id)
+    mp = get_object_or_404(ManualPayment, pk=manual_payment_id, user=request.user)
     uid = str(uuid4()).replace('-', '')
     form = ManualPaymentForm(initial={
         'title': mp.title,
