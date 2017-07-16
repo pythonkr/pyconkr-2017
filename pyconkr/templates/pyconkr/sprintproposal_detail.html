@@ -14,6 +14,7 @@
 </h1>
 {% endblock %}
 {% block content %}
+<div class="alert alert-warning" role="info">날짜와 시간은 추후 공지됩니다.</div>
 <div class="row proposal-detail">
     <h3>{% trans "Sprinter" %}</h3>
     <h4>{{ sprint.user.profile.name }} <small>{{ sprint.user.profile.organization }}</small></h4>
@@ -49,30 +50,4 @@
 </a>
 {% endif %}
 <hr>
-<h3>{% trans "Attendees" %}</h3>
-{% if not attendees %}
-<p>{% trans "No attendees, yet." %}</p>
-{% else %}
-<ul class="attendees">
-{% for attend in attendees %}
-    <li>
-        {% if attend.picture %}
-        <img class="profile-thumb" src="/media/{{ attend.picture }}">
-        {% else %}
-        <span class="glyphicon glyphicon-user"></span>
-        {% endif %}
-        <span class="name">{{ attend.name }}</span>
-	{% if not attend.registered %}
-	<span class="label label-danger">{% trans "Not registered user" %}</span>
-	{% endif %}
-	{% if attend.waiting %}
-	<span class="label label-warning">{% trans "Waiting" %}</span>
-	{% else %}
-	<span class="label label-success">{% trans "Checked in" %}</span>
-	{% endif %}
-    </li>
-{% endfor %}
-</ul>
-<div class="clear"></div>
-{% endif %}
 {% endblock %}
