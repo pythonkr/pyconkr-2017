@@ -26,6 +26,7 @@ def default(request):
                 ('pyconkr', {'title': _('About PyCon Korea 2017')}),
                 ('coc', {'title': _('Code of Conduct')}),
                 ('blog', {'title': _('PyCon.KR 2017 Blog')}),
+                ('announcements', {'title': _('Announcements')}),
                 ('sponsor', {'title': _('Sponsors')}),
                 ('patron', {'title': _('Patrons')}),
                 ('sponsorship', {'title': _('Sponsorship')}),
