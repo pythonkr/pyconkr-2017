@@ -35,6 +35,10 @@ msgstr "파이콘 성명서"
 msgid "Announcements"
 msgstr "알림"
 
+#: pyconkr/context_processors.py:27
+msgid "PyCon.KR 2017 Blog"
+msgstr "파이콘 한국 2017 블로그"
+
 #: pyconkr/context_processors.py:28 pyconkr/templates/base.html:76
 #: pyconkr/templates/pyconkr/sponsor_list.html:4
 msgid "Sponsors"

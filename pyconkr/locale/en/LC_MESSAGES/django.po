@@ -34,6 +34,10 @@ msgstr "Code of Conduct"
 msgid "Announcements"
 msgstr "Announcements"
 
+#: pyconkr/context_processors.py:27
+msgid "PyCon.KR 2017 Blog"
+msgstr "PyCon.KR 2017 Blog"
+
 #: pyconkr/context_processors.py:28 pyconkr/templates/base.html:76
 #: pyconkr/templates/pyconkr/sponsor_list.html:4
 msgid "Sponsors"

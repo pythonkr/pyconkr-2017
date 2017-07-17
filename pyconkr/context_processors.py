@@ -25,7 +25,7 @@ def default(request):
             'submenu': OrderedDict([
                 ('pyconkr', {'title': _('About PyCon Korea 2017')}),
                 ('coc', {'title': _('Code of Conduct')}),
-                ('announcements', {'title': _('Announcements')}),
+                ('blog', {'title': _('PyCon.KR 2017 Blog')}),
                 ('sponsor', {'title': _('Sponsors')}),
                 ('patron', {'title': _('Patrons')}),
                 ('sponsorship', {'title': _('Sponsorship')}),
