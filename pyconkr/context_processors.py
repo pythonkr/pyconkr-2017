@@ -43,6 +43,8 @@ def default(request):
                 ('keynote', {'title': _('Keynotes')}),
                 ('speaker', {'title': _('Speakers')}),
                 ('tutorials', {'title': _('Sprint and Tutorial')}),
+                ('young_coder', {'title': _('Young Coder')}),
+                ('child_care', {'title': _('Child Care')}),
                 ('lightning_talk', {'title': _('Lightning talk')}),
                 ('ost', {'title': _('Open Spaces')}),
             ]),
