@@ -14,7 +14,6 @@
 </h1>
 {% endblock %}
 {% block content %}
-<div class="alert alert-warning" role="info">날짜와 시간은 추후 공지됩니다.</div>
 <div class="row proposal-detail">
     <h3>{% trans "Sprinter" %}</h3>
     <h4>{{ sprint.user.profile.name }} <small>{{ sprint.user.profile.organization }}</small></h4>
@@ -22,6 +21,10 @@
         {{ sprint.user.profile.bio|safe }}
     </div>
     <hr>
+    <div>
+        <h4>{% trans "Tutorial Information" %}</h4>
+        {{ sprint.comment|safe }}
+    </div>
     <div>
         <h3>{% trans "Sprint Language" %}</h3>
         <div>{{ sprint.language|linebreaks }}</div>
@@ -40,14 +43,5 @@
 <a href="{% url "tutorials" %}" class="btn btn-default">
     <span class="glyphicon glyphicon-chevron-left"></span> {% trans "Back to list" %}
 </a>
-{% if joined %}
-<a href="{% url "sprint-join" sprint.id %}?leave=1" class="btn btn-warning">
-    <span class="glyphicon glyphicon-minus"></span> {% trans "Leave this event" %}
-</a>
-{% else %}
-<a href="{% url "sprint-join" sprint.id %}" class="btn btn-primary">
-    <span class="glyphicon glyphicon-plus"></span> {% trans "Join this event" %}
-</a>
-{% endif %}
 <hr>
 {% endblock %}
