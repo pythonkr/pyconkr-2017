@@ -38,6 +38,12 @@ msgstr "Announcements"
 msgid "PyCon.KR 2017 Blog"
 msgstr "PyCon.KR 2017 Blog"
 
+msgid "Young Coder"
+msgstr "Young Coder"
+
+msgid "Child Care"
+msgstr "Child Care"
+
 #: pyconkr/context_processors.py:28 pyconkr/templates/base.html:76
 #: pyconkr/templates/pyconkr/sponsor_list.html:4
 msgid "Sponsors"

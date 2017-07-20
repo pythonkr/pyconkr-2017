@@ -39,6 +39,12 @@ msgstr "알림"
 msgid "PyCon.KR 2017 Blog"
 msgstr "파이콘 한국 2017 블로그"
 
+msgid "Young Coder"
+msgstr "영코더"
+
+msgid "Child Care"
+msgstr "아이돌봄"
+
 #: pyconkr/context_processors.py:28 pyconkr/templates/base.html:76
 #: pyconkr/templates/pyconkr/sponsor_list.html:4
 msgid "Sponsors"
