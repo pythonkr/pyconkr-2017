@@ -640,6 +640,18 @@ msgstr "튜토리얼 제안서가 수정되었습니다."
 msgid "Update tutorial"
 msgstr "튜토리얼 갱신"
 
+#: pyconkr/views.py:415
+msgid "Sprint proposal successfully created."
+msgstr "스프린트 제안을 제출하였습니다."
+
+#: pyconkr/views.py:539
+msgid "Sprint proposal successfully updated."
+msgstr "스프린트 제안서가 수정되었습니다."
+
+#: pyconkr/views.py:546
+msgid "Update sprint"
+msgstr "스프린트 갱신"
+
 #~ msgid "About PyCon 2017"
 #~ msgstr "파이콘 한국 2017"
 

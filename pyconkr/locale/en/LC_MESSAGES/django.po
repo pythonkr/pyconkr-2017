@@ -635,6 +635,18 @@ msgstr "Tutorial proposal successfully updated."
 msgid "Update tutorial"
 msgstr "Update tutorial"
 
+#: pyconkr/views.py:415
+msgid "Sprint proposal successfully created."
+msgstr "Sprint proposal successfully created."
+
+#: pyconkr/views.py:539
+msgid "Sprint proposal successfully updated."
+msgstr "Sprint proposal successfully updated."
+
+#: pyconkr/views.py:546
+msgid "Update sprint"
+msgstr "Update sprint"
+
 #~ msgid "About PyCon 2017"
 #~ msgstr "About PyCon Korea 2017"
 
