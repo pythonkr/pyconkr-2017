@@ -14,7 +14,6 @@
 </h1>
 {% endblock %}
 {% block content %}
-<div class="alert alert-warning" role="info">날짜와 시간은 추후 공지됩니다.</div>
 <div class="row proposal-detail">
     <p>
         <span class="label label-info">{{ tutorial.get_type_display }}</span>
@@ -28,6 +27,10 @@
         {{ tutorial.user.profile.bio|safe }}
     </div>
     <hr>
+    <div>
+        <h4>{% trans "Tutorial Information" %}</h4>
+        {{ tutorial.comment|safe }}
+    </div>
     <div>
         <h4>{% trans "Brief" %}</h4>
         <div>{{ tutorial.brief|linebreaks }}</div>

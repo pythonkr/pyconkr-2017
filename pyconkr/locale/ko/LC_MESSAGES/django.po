@@ -693,3 +693,6 @@ msgstr "영어"
 
 msgid "Manual Payment"
 msgstr "임시 결제"
+
+msgid "Tutorial Information"
+msgstr "일시와 장소"
