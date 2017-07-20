@@ -536,14 +536,14 @@ class SprintProposalUpdate(SuccessMessageMixin, UpdateView):
     model = SprintProposal
     form_class = SprintProposalForm
     template_name = "pyconkr/proposal_form.html"
-    success_message = _("Tutorial proposal successfully updated.")
+    success_message = _("Sprint proposal successfully updated.")
 
     def get_object(self, queryset=None):
         return get_object_or_404(SprintProposal, pk=self.request.user.sprintproposal.pk)
 
     def get_context_data(self, **kwargs):
         context = super(SprintProposalUpdate, self).get_context_data(**kwargs)
-        context['title'] = _("Update tutorial")
+        context['title'] = _("Update sprint")
         return context
 
     def get_success_url(self):

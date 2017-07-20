@@ -38,6 +38,12 @@ msgstr "Announcements"
 msgid "PyCon.KR 2017 Blog"
 msgstr "PyCon.KR 2017 Blog"
 
+msgid "Young Coder"
+msgstr "Young Coder"
+
+msgid "Child Care"
+msgstr "Child Care"
+
 #: pyconkr/context_processors.py:28 pyconkr/templates/base.html:76
 #: pyconkr/templates/pyconkr/sponsor_list.html:4
 msgid "Sponsors"
@@ -634,6 +640,18 @@ msgstr "Tutorial proposal successfully updated."
 #: pyconkr/views.py:456
 msgid "Update tutorial"
 msgstr "Update tutorial"
+
+#: pyconkr/views.py:415
+msgid "Sprint proposal successfully created."
+msgstr "Sprint proposal successfully created."
+
+#: pyconkr/views.py:539
+msgid "Sprint proposal successfully updated."
+msgstr "Sprint proposal successfully updated."
+
+#: pyconkr/views.py:546
+msgid "Update sprint"
+msgstr "Update sprint"
 
 #~ msgid "About PyCon 2017"
 #~ msgstr "About PyCon Korea 2017"
