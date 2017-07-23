@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-import logging
 import datetime
+import json
+import logging
 from uuid import uuid4
 
 from django.shortcuts import render, redirect, get_object_or_404
@@ -8,6 +9,8 @@ from django.http import HttpResponse, JsonResponse
 from django.utils import timezone
 from django.utils.translation import ugettext as _
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth.models import User
 from django.views.generic import DetailView
 from django.views.decorators.csrf import csrf_exempt
 from constance import config
@@ -337,3 +340,33 @@ class RegistrationReceiptDetail(DetailView):
         context = super(RegistrationReceiptDetail, self).get_context_data(**kwargs)
         context['title'] = _("Registration Receipt")
         return context
+
+
+def group_required(*group_names):
+    def in_groups(u):
+        if u.is_authenticated():
+            if bool(u.groups.filter(name__in=group_names)) or u.is_superuser:
+                return True
+        return False
+    return user_passes_test(in_groups)
+
+
+@login_required
+@group_required('admin', 'organizer', 'volunteer')
+def issue(request):
+    registration = Registration.objects.filter(payment_status='paid')
+    context = {
+        'registration': registration,
+        'title': _("Issue Ticket System"),
+    }
+    return render(request, 'registration/issue_ticket.html', context)
+
+
+@login_required
+@group_required('admin', 'organizer', 'volunteer')
+def issue_submit(request):
+    # Work in Progress...
+    return JsonResponse({
+        'success': True,
+        'message': u'발권완료',
+    })

@@ -17,7 +17,7 @@ class Option(models.Model):
 
     class Meta:
         ordering = ['price']
-    
+
     @property
     def is_soldout(self):
         return self.total <= Registration.objects.filter(option=self, payment_status__in=['paid', 'ready']).count()
@@ -113,3 +113,12 @@ class ManualPayment(models.Model):
 
     def __str__(self):
         return '({}) {} ({})원'.format(self.payment_status.upper(), self.title, self.price)
+
+
+class IssueTicket(models.Model):
+    user = models.ForeignKey(Registration)
+    issue_manager = models.ForeignKey(User)
+    is_issued = models.BooleanField(default=False)
+    issue_date = models.DateTimeField(null=True, blank=True)
+    reissue_date = models.DateTimeField(null=True, blank=True)
+    reissue_count = models.IntegerField(default=0)
