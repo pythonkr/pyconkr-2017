@@ -50,13 +50,13 @@ def schedule(request):
             if t.day_id != d.id:
                 continue
             wide[d][t] = {}
-            narrow[d][t] = {}
+            narrow[d][t] = []
             for r in rooms:
                 s = Program.objects.filter(date=d, times=t, rooms=r)
                 if s:
                     if s[0].times.all()[0] == t and s[0].id not in processed:
                         wide[d][t][r] = s[0]
-                        narrow[d][t][r] = s[0]
+                        narrow[d][t].append(s[0])
                         processed.add(s[0].id)
                 else:
                     wide[d][t][r] = None
