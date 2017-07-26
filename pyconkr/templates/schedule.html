@@ -17,8 +17,8 @@
       <tbody>
       {% for t, t_ in d_.items %}
       <tr>
-        <th nowrap rowspan="{{ t_.items|length }}">{{ t.begin|date:"H:i" }}</th>
-        {% for r, s in t_.items|slice:"1" %}
+        <th nowrap rowspan="{{ t_|length }}">{{ t.begin|date:"H:i" }}</th>
+        {% for s in t_|slice:"1" %}
         <td nowrap>{{ s.room }}</td>
         <td>
             <a href="{{ s.get_absolute_url }}">{{ s }}</a>
@@ -37,7 +37,7 @@
         </td>
         {% endfor %}
       </tr>
-      {% for r, s in t_.items|slice:"1:" %}
+      {% for s in t_|slice:"1:" %}
       <tr>
         <td nowrap>{{ s.room }}</td>
         <td>
