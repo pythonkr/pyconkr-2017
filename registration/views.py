@@ -16,8 +16,9 @@ from django.views.decorators.csrf import csrf_exempt
 from constance import config
 
 from pyconkr.helper import render_io_error
-from .forms import RegistrationForm, RegistrationAdditionalPriceForm, ManualPaymentForm
-from .models import Option, Registration, ManualPayment
+from .forms import (RegistrationForm, RegistrationAdditionalPriceForm,
+                    ManualPaymentForm, IssueSubmitForm)
+from .models import Option, Registration, ManualPayment, IssueTicket
 from .iamporter import get_access_token, Iamporter, IamporterError
 
 logger = logging.getLogger(__name__)

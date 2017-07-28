@@ -21,7 +21,7 @@
         <td>{{ user.transaction_code }}</td>
     <td>
         <div class="btn-group">
-            <button type="button" class="btn btn-success btn-filter" onclick="printLabelPopup('{{ user.name }}', '{{ user.top_size }}')">발권</button>
+          <button type="button" class="btn btn-success btn-filter" onclick="printLabelPopup('{{ user.name }}', {{ user.id }},'{{ user.top_size }}')">발권</button>
             <button type="button" class="btn btn-warning btn-filter">재발권</button>
             <button type="button" class="btn btn-default btn-filter" onclick="location.href='/admin/registration/registration/'">관리</button>
         </div>
@@ -31,74 +31,101 @@
 </tbody>
 </table>
 
+
+{% endblock %}
+
+{% block head-include %}
+<link href="{% static "components/datatables.net-bs/css/dataTables.bootstrap.min.css" %}" rel="stylesheet">
+{% endblock %}
+
+{% block script %}
+<script src="{% static "components/js-cookie/src/js.cookie.js" %}" charset="utf-8"></script>
+<script src="{% static "components/handlebars/handlebars.min.js" %}" charset="utf-8"></script>
 <script src="{% static "components/datatables.net/js/jquery.dataTables.min.js" %}" charset="utf-8"></script>
 <script src="{% static "components/datatables.net-bs/js/dataTables.bootstrap.min.js" %}" charset="utf-8"></script>
-<link href="{% static "components/datatables.net-bs/css/dataTables.bootstrap.min.css" %}" rel="stylesheet">
+
+{% verbatim %}
+<script id="print_template" type="text/x-handlebars-template">
+<div class="ui brother-label">
+    <p class="ui name">{{name}}</p>
+</div>
+<div class="ui brother-label">
+    <p class="ui name">{{topSize}}</p>
+</div>
+<style>
+.brother-label {
+  margin: 0 auto;
+  padding: 0 auto;
+  width: 88mm;
+  height: 27mm;
+}
+.name{
+  font-size: {{fontSize}};
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 1rem;
+}
+@media print {
+  body, html, p{
+    margin: 0mm !important;
+    padding: 0mm !important;
+  }
+  @page{
+    margin: 0mm !important;
+    padding: 0mm !important;
+  }
+}
+</script>
+{% endverbatim %}
 
 <script type="text/javascript">
 $(document).ready( function () {
-    $('#issue-ticket').DataTable({
-        bInfo: true,
-        bLengthChange: true,
-        lengthMenu: [[50, 100, 200], [50, 100, 200]],
-        order: [[ 0, 'asc' ]],
-        paging: true,
-        searching: true,
-    });
-} );
+  $('#issue-ticket').DataTable({
+    bInfo: true,
+    bLengthChange: true,
+    lengthMenu: [[50, 100, 200], [50, 100, 200]],
+    order: [[ 0, 'asc' ]],
+    paging: true,
+    searching: true,
+  });
+});
 
-function issueTicketConfirm() {
-    // send ajax request to comfirm issue ticket...
+function issueTicketConfirm(userId) {
+  var csrftoken = Cookies.get('csrftoken');
+  $.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+      if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+      }
+    }
+  });
+  $.ajax("{% url 'registration_issue_submit' %}", {
+    data: {'id': userId},
+    method: 'POST',
+    success: function(data) {
+      console.log('issue counted!');
+    }
+  });
+  console.log('issue count up!');
 }
 
-function printLabelPopup(name, topSize) {
-    var printWindow = window.open('', '', 'width=600, height=400');
-    var fontSize = '1em';
-
-    HTML = '';
-    if (name.length < 5) {
-        fontSize = '5em';
-    } else if (name.length < 10) {
-        fontSize = '4em';
-    } else {
-        fontSize = '3em';
-    }
-    HTML += ' \
-    <div class="ui brother-label"> \
-        <p class="ui name">' + name + '</p> \
-    </div> \
-    <div class="ui brother-label"> \
-        <p class="ui name">' + topSize + '</p> \
-    </div> \
-    <style> \
-    .brother-label { \
-        margin: 0 auto; \
-        padding: 0 auto; \
-        width: 88mm; \
-        height: 27mm; \
-    } \
-    .name{ \
-        font-size: ' + fontSize + '; \
-        font-weight: bold; \
-        text-align: center; \
-        letter-spacing: 1rem;\
-    } \
-    @media print { \
-        body, html, p{ \
-            margin: 0mm !important; \
-            padding: 0mm !important;\
-        } \
-        @page{ \
-            margin: 0mm !important; \
-            padding: 0mm !important; \
-        } \
-    } \
-    </style>';
-    printWindow.document.write(HTML);
-    printWindow.document.close();
-    printWindow.focus();
-    printWindow.print();
-    printWindow.close();
+function printLabelPopup(name, userId, topSize) {
+  var printWindow = window.open('', '', 'width=600, height=400');
+  var fontSize = '1em';
+  var printTemplateScript = $('#print_template').html();
+  var printTemplate = Handlebars.compile(printTemplateScript);
+  var context = {
+    'name': name,
+    'topSize': topSize,
+    'fontSize': fontSize
+  };
+  printWindow.document.write(printTemplate(context));
+  printWindow.document.close();
+  printWindow.focus();
+  printWindow.print();
+  printWindow.close();
+  issueTicketConfirm(userId);
 }
 </script>
+
 {% endblock %}

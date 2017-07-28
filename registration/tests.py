@@ -4,6 +4,7 @@ import datetime
 from unittest import mock
 from django.test import TestCase
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import Group
 from django.core.urlresolvers import reverse
 from constance.test import override_config
 from django_dynamic_fixture import G
@@ -48,4 +49,21 @@ class RegistrationTest(TestCase):
         response = self.client.post(reverse('registration_callback'), callback_param)
         self.assertEqual(response.status_code, 200)
         registration = Registration.objects.get(id=registration.id)
-        self.assertEqual(registration.payment_status, 'paid') 
+        self.assertEqual(registration.payment_status, 'paid')
+
+
+class IssueTicketTest(TestCase):
+    def test_inner_group_only(self):
+        response = self.client.get(reverse('registration_issue'))
+        self.assertNotEqual(response.status_code, 200)
+        login_user = User.objects.create_user('test@user.com', 'test@user.com',
+                'testpass')
+        self.client.login(username='test@user.com', password='testpass')
+        response = self.client.get(reverse('registration_issue'))
+        self.assertNotEqual(response.status_code, 200)
+        group = G(Group, name='volunteer')
+        login_user.groups.add(group)
+        response = self.client.get(reverse('registration_issue'))
+        self.assertEqual(response.status_code, 200)
+
+
