@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.contrib.auth.models import User
-
+from django.utils import timezone
 
 class Option(models.Model):
     name = models.CharField(max_length=50)
@@ -80,6 +80,8 @@ class Registration(models.Model):
     confirmed = models.DateTimeField(null=True, blank=True)
     canceled = models.DateTimeField(null=True, blank=True)
 
+    def __str__(self):
+        return "{} {} {}".format(self.name, self.email, self.option.name)
 
 class ManualPayment(models.Model):
     user = models.ForeignKey(User)
@@ -116,9 +118,6 @@ class ManualPayment(models.Model):
 
 
 class IssueTicket(models.Model):
-    user = models.ForeignKey(Registration)
-    issue_manager = models.ForeignKey(User)
-    is_issued = models.BooleanField(default=False)
-    issue_date = models.DateTimeField(null=True, blank=True)
-    reissue_date = models.DateTimeField(null=True, blank=True)
-    reissue_count = models.IntegerField(default=0)
+    registration = models.ForeignKey(Registration)
+    issuer = models.ForeignKey(User)
+    issue_date = models.DateTimeField(default=timezone.now)

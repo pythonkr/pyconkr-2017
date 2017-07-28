@@ -22,8 +22,9 @@
     <td>
         <div class="btn-group">
           <button type="button" class="btn btn-success btn-filter" onclick="printLabelPopup('{{ user.name }}', {{ user.id }},'{{ user.top_size }}')">발권</button>
-            <button type="button" class="btn btn-warning btn-filter">재발권</button>
-            <button type="button" class="btn btn-default btn-filter" onclick="location.href='/admin/registration/registration/'">관리</button>
+            <a class="btn btn-default btn-filter"
+              href='/admin/registration/registration/{{user.id}}'
+              target='_blank' role="button">관리</a>
         </div>
     </td>
     </tr>
@@ -39,8 +40,6 @@
 {% endblock %}
 
 {% block script %}
-<script src="{% static "components/js-cookie/src/js.cookie.js" %}" charset="utf-8"></script>
-<script src="{% static "components/handlebars/handlebars.min.js" %}" charset="utf-8"></script>
 <script src="{% static "components/datatables.net/js/jquery.dataTables.min.js" %}" charset="utf-8"></script>
 <script src="{% static "components/datatables.net-bs/js/dataTables.bootstrap.min.js" %}" charset="utf-8"></script>
 
@@ -100,13 +99,15 @@ function issueTicketConfirm(userId) {
     }
   });
   $.ajax("{% url 'registration_issue_submit' %}", {
-    data: {'id': userId},
+    data: {'user_id': userId},
     method: 'POST',
     success: function(data) {
-      console.log('issue counted!');
+      alert('발권처리 기록 되었습니다.');
+    },
+    error: function(data) {
+      alert('발권처리 기록에 실패 하였습니다.');
     }
   });
-  console.log('issue count up!');
 }
 
 function printLabelPopup(name, userId, topSize) {

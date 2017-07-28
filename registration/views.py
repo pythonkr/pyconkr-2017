@@ -5,7 +5,7 @@ import logging
 from uuid import uuid4
 
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse, JsonResponse, HttpResponseBadRequest
 from django.utils import timezone
 from django.utils.translation import ugettext as _
 from django.contrib.auth.decorators import login_required
@@ -13,6 +13,7 @@ from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.models import User
 from django.views.generic import DetailView
 from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_http_methods
 from constance import config
 
 from pyconkr.helper import render_io_error
@@ -352,7 +353,6 @@ def group_required(*group_names):
     return user_passes_test(in_groups)
 
 
-@login_required
 @group_required('admin', 'organizer', 'volunteer')
 def issue(request):
     registration = Registration.objects.filter(payment_status='paid')
@@ -363,10 +363,20 @@ def issue(request):
     return render(request, 'registration/issue_ticket.html', context)
 
 
-@login_required
 @group_required('admin', 'organizer', 'volunteer')
+@require_http_methods(["POST"])
 def issue_submit(request):
-    # Work in Progress...
+    user_data = IssueSubmitForm(request.POST)
+    if not user_data.is_valid():
+        return HttpResponseBadRequest('invalid form value')
+    user_id = user_data.cleaned_data['user_id']
+    registration = Registration.objects.get(payment_status='paid',
+                                            user=user_id)
+    issue=IssueTicket(
+        registration=registration,
+        issuer=User.objects.get(id=user_id)
+    ).save()
+
     return JsonResponse({
         'success': True,
         'message': u'발권완료',

@@ -9,7 +9,7 @@ from django.core.urlresolvers import reverse
 from constance.test import override_config
 from django_dynamic_fixture import G
 
-from .models import Option, Registration
+from .models import Option, Registration, IssueTicket
 
 User = get_user_model()
 
@@ -57,7 +57,7 @@ class IssueTicketTest(TestCase):
         response = self.client.get(reverse('registration_issue'))
         self.assertNotEqual(response.status_code, 200)
         login_user = User.objects.create_user('test@user.com', 'test@user.com',
-                'testpass')
+                                              'testpass')
         self.client.login(username='test@user.com', password='testpass')
         response = self.client.get(reverse('registration_issue'))
         self.assertNotEqual(response.status_code, 200)
@@ -66,4 +66,16 @@ class IssueTicketTest(TestCase):
         response = self.client.get(reverse('registration_issue'))
         self.assertEqual(response.status_code, 200)
 
-
+    def test_incr_issue_count(self):
+        login_user = User.objects.create_user('test@user.com', 'test@user.com',
+                                              'testpass')
+        G(Registration, payment_status='paid', user=login_user)
+        group = G(Group, name='volunteer')
+        login_user.groups.add(group)
+        self.client.login(username='test@user.com', password='testpass')
+        response = self.client.get(reverse('registration_issue_submit'))
+        self.assertEqual(response.status_code, 405) # Because POST only
+        response = self.client.post(reverse('registration_issue_submit'),
+                                    {'user_id': login_user.id})
+        issue_count = IssueTicket.objects.filter(registration__user=login_user).count()
+        self.assertEqual(issue_count, 1)
