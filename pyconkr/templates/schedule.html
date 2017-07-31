@@ -94,9 +94,6 @@
                 {% if not s.is_recordable %}
                   <span class="glyphicon glyphicon-eye-close"></span>
                 {% endif %}
-                {% if s.difficulty %}
-                  <span class="badge badge-primary">{{ s.difficulty }}</span>
-                {% endif %}
               </div>
             </a>
             {% if s.slide_url %}
@@ -107,6 +104,9 @@
             {% endif %}
             {% if s.pdf_url %}
             <small><a href="{{ s.pdf_url }}"><span class="label label-danger">{% trans "PDF link" %}</span></a></small>
+            {% endif %}
+            {% if s.difficulty %}
+              <small><span class="label label-info">{{ s.difficulty }}</span></small>
             {% endif %}
             {% if not s.is_breaktime and s.language == 'E' %}
               <small><span class="label label-default">{% trans "Schedule English Label" %}</span></small>
