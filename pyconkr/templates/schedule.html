@@ -21,7 +21,12 @@
         {% for s in t_|slice:"1" %}
         <td nowrap>{{ s.room }}</td>
         <td>
-            <a href="{{ s.get_absolute_url }}">{{ s }}</a>
+            <a href="{{ s.get_absolute_url }}">
+                {{ s.name }}
+                {% if not s.is_recordable %}
+                    &nbsp;<span class="glyphicon glyphicon-eye-close"></span>
+                {% endif %}
+            </a>
             {% if s.slide_url %}
             <small><a href="{{ s.slide_url }}"><span class="label label-primary">{% trans "Slides link" %}</span></a></small>
             {% endif %}
@@ -44,7 +49,12 @@
       <tr>
         <td nowrap>{{ s.room }}</td>
         <td>
-            <a href="{{ s.get_absolute_url }}">{{ s }}</a>
+            <a href="{{ s.get_absolute_url }}">
+                {{ s.name }}
+                {% if not s.is_recordable %}
+                    &nbsp;<span class="glyphicon glyphicon-eye-close"></span>
+                {% endif %}
+            </a>
             {% if s.slide_url %}
             <small><a href="{{ s.slide_url }}"><span class="label label-primary">{% trans "Slides link" %}</span></a></small>
             {% endif %}
