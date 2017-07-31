@@ -707,3 +707,31 @@ input[type=file] {
         display: none;
     }
 }
+
+.label-slides {
+    background-color: #4B0082;
+}
+
+.label-video {
+    background-color: #0000FF
+}
+
+.label-pdf {
+    background-color: #FFFF00;
+}
+
+.label-difficulty-b {
+    background-color: #00FF00;
+}
+
+.label-difficulty-i {
+    background-color: #FF7F00;
+}
+
+.label-difficulty-e {
+    background-color: #FF0000;
+}
+
+.label-english-session {
+    background-color: #9400D3;
+}
