@@ -3,6 +3,10 @@
 {% load thumbnail %}
 {% load crispy_forms_tags %}
 
+{% block head-title %}{{ sprint.title }} &mdash; {{ block.super }}{% endblock %}
+{% block og-title %}{{ sprint.title }}{% endblock %}
+{% block og-desc %}{{ sprint.project_brief }}{% endblock %}
+
 {% block title %}
 <h1>
     {{ sprint.title }}
