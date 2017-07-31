@@ -17,7 +17,11 @@
   {% endif %}
   {% if program.difficulty %}
   <li class="list-group-item">
-    <span class="glyphicon glyphicon-tag"></span> {{ program.difficulty }}
+    <span class="glyphicon glyphicon-pencil"></span>
+      {% if program.difficulty == 'B' %}{% trans "Difficulty Beginner" %}
+      {% elif program.difficulty == 'I' %}{% trans "Difficulty Intermediate" %}
+      {% elif program.difficulty == 'E' %}{% trans "Difficulty Experienced" %}
+      {% endif %}
   </li>
   {% endif %}
   {% if program.date %}
