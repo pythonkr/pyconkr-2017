@@ -15,6 +15,11 @@
     <span class="glyphicon glyphicon-tag"></span> {{ program.category }}
   </li>
   {% endif %}
+  {% if program.difficulty %}
+  <li class="list-group-item">
+    <span class="glyphicon glyphicon-tag"></span> {{ program.difficulty }}
+  </li>
+  {% endif %}
   {% if program.date %}
   <li class="list-group-item">
     <span class="glyphicon glyphicon-time"></span> {{ program.date }} {{ program.get_times }}
