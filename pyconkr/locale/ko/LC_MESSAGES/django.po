@@ -714,3 +714,12 @@ msgstr "임시 결제"
 
 msgid "Tutorial Information"
 msgstr "일시와 장소"
+
+msgid "Difficulty Beginner"
+msgstr "초급"
+
+msgid "Difficulty Intermediate"
+msgstr "중급"
+
+msgid "Difficulty Experienced"
+msgstr "상급"

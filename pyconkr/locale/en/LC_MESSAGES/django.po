@@ -703,3 +703,12 @@ msgstr "English"
 
 msgid "Tutorial Information"
 msgstr "Date and Venue"
+
+msgid "Difficulty Beginner"
+msgstr "Beginner"
+
+msgid "Difficulty Intermediate"
+msgstr "Intermediate"
+
+msgid "Difficulty Experienced"
+msgstr "Experienced"

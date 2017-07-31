@@ -21,18 +21,35 @@
         {% for s in t_|slice:"1" %}
         <td nowrap>{{ s.room }}</td>
         <td>
-            <a href="{{ s.get_absolute_url }}">{{ s }}</a>
+            <a href="{{ s.get_absolute_url }}">
+                {{ s.name }}
+                {% if not s.is_recordable %}
+                    &nbsp;<span class="glyphicon glyphicon-eye-close"></span>
+                {% endif %}
+            </a>
             {% if s.slide_url %}
-            <small><a href="{{ s.slide_url }}"><span class="label label-primary">{% trans "Slides link" %}</span></a></small>
+            <small><a href="{{ s.slide_url }}"><span class="label label-slides">{% trans "Slides link" %}</span></a></small>
             {% endif %}
             {% if s.video_url %}
-            <small><a href="{{ s.video_url }}"><span class="label label-info">{% trans "Video link" %}</span></a></small>
+            <small><a href="{{ s.video_url }}"><span class="label label-vidieo">{% trans "Video link" %}</span></a></small>
             {% endif %}
             {% if s.pdf_url %}
-            <small><a href="{{ s.pdf_url }}"><span class="label label-danger">{% trans "PDF link" %}</span></a></small>
+            <small><a href="{{ s.pdf_url }}"><span class="label label-pdf">{% trans "PDF link" %}</span></a></small>
             {% endif %}
-            {% if not s.is_breaktime and s.language == 'E' %}
-            <small><span class="label label-default">{% trans "Schedule English Label" %}</span></small>
+            {% if not s.is_breaktime %}
+                <small>
+                    {% if s.difficulty == 'B' %}
+                        <span class="label label-difficulty-b">{% trans "Difficulty Beginner" %}</span>
+                    {% elif s.difficulty == 'I' %}
+                        <span class="label label-difficulty-i">{% trans "Difficulty Intermediate" %}</span>
+                    {% elif s.difficulty == 'E' %}
+                        <span class="label label-difficulty-e">{% trans "Difficulty Experienced" %}</span>
+                    {% endif %}
+                </small>
+
+                {% if s.language == 'E' %}
+                    <small><span class="label label-english-session">{% trans "Schedule English Label" %}</span></small>
+                {% endif %}
             {% endif %}
         </td>
         {% endfor %}
@@ -41,18 +58,35 @@
       <tr>
         <td nowrap>{{ s.room }}</td>
         <td>
-            <a href="{{ s.get_absolute_url }}">{{ s }}</a>
+            <a href="{{ s.get_absolute_url }}">
+                {{ s.name }}
+                {% if not s.is_recordable %}
+                    &nbsp;<span class="glyphicon glyphicon-eye-close"></span>
+                {% endif %}
+            </a>
             {% if s.slide_url %}
-            <small><a href="{{ s.slide_url }}"><span class="label label-primary">{% trans "Slides link" %}</span></a></small>
+                <small><a href="{{ s.slide_url }}"><span class="label label-slides">{% trans "Slides link" %}</span></a></small>
             {% endif %}
             {% if s.video_url %}
-            <small><a href="{{ s.video_url }}"><span class="label label-info">{% trans "Video link" %}</span></a></small>
+                <small><a href="{{ s.video_url }}"><span class="label label-vidieo">{% trans "Video link" %}</span></a></small>
             {% endif %}
             {% if s.pdf_url %}
-            <small><a href="{{ s.pdf_url }}"><span class="label label-danger">{% trans "PDF link" %}</span></a></small>
+                <small><a href="{{ s.pdf_url }}"><span class="label label-pdf">{% trans "PDF link" %}</span></a></small>
             {% endif %}
-            {% if not s.is_breaktime and s.language == 'E' %}
-                <small><span class="label label-default">{% trans "Schedule English Label" %}</span></small>
+            {% if not s.is_breaktime %}
+                <small>
+                    {% if s.difficulty == 'B' %}
+                        <span class="label label-difficulty-b">{% trans "Difficulty Beginner" %}</span>
+                    {% elif s.difficulty == 'I' %}
+                        <span class="label label-difficulty-i">{% trans "Difficulty Intermediate" %}</span>
+                    {% elif s.difficulty == 'E' %}
+                        <span class="label label-difficulty-e">{% trans "Difficulty Experienced" %}</span>
+                    {% endif %}
+                </small>
+
+                {% if s.language == 'E' %}
+                    <small><span class="label label-english-session">{% trans "Schedule English Label" %}</span></small>
+                {% endif %}
             {% endif %}
         </td>
       </tr>
@@ -92,21 +126,33 @@
               <div>
                 {{ s.name }}
                 {% if not s.is_recordable %}
-                  &nbsp;<span class="glyphicon glyphicon-eye-close"></span>
+                &nbsp;<span class="glyphicon glyphicon-eye-close"></span>
                 {% endif %}
               </div>
             </a>
             {% if s.slide_url %}
-            <small><a href="{{ s.slide_url }}"><span class="label label-primary">{% trans "Slides link" %}</span></a></small>
+            <small><a href="{{ s.slide_url }}"><span class="label label-slides">{% trans "Slides link" %}</span></a></small>
             {% endif %}
             {% if s.video_url %}
-            <small><a href="{{ s.video_url }}"><span class="label label-info">{% trans "Video link" %}</span></a></small>
+            <small><a href="{{ s.video_url }}"><span class="label label-video">{% trans "Video link" %}</span></a></small>
             {% endif %}
             {% if s.pdf_url %}
-            <small><a href="{{ s.pdf_url }}"><span class="label label-danger">{% trans "PDF link" %}</span></a></small>
+            <small><a href="{{ s.pdf_url }}"><span class="label label-pdf">{% trans "PDF link" %}</span></a></small>
             {% endif %}
-            {% if not s.is_breaktime and s.language == 'E' %}
-              <small><span class="label label-default">{% trans "Schedule English Label" %}</span></small>
+            {% if not s.is_breaktime %}
+                <small>
+                    {% if s.difficulty == 'B' %}
+                        <span class="label label-difficulty-b">{% trans "Difficulty Beginner" %}</span>
+                    {% elif s.difficulty == 'I' %}
+                        <span class="label label-difficulty-i">{% trans "Difficulty Intermediate" %}</span>
+                    {% elif s.difficulty == 'E' %}
+                        <span class="label label-difficulty-e">{% trans "Difficulty Experienced" %}</span>
+                    {% endif %}
+                </small>
+
+                {% if s.language == 'E' %}
+                    <small><span class="label label-english-session">{% trans "Schedule English Label" %}</span></small>
+                {% endif %}
             {% endif %}
           </div>
           {% if s.speakers %}
