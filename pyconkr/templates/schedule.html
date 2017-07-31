@@ -31,6 +31,9 @@
             {% if s.pdf_url %}
             <small><a href="{{ s.pdf_url }}"><span class="label label-danger">{% trans "PDF link" %}</span></a></small>
             {% endif %}
+            {% if s.difficulty %}
+                <small><span class="label label-success">{{ s.difficulty }}</span></small>
+            {% endif %}
             {% if not s.is_breaktime and s.language == 'E' %}
             <small><span class="label label-default">{% trans "Schedule English Label" %}</span></small>
             {% endif %}
@@ -50,6 +53,9 @@
             {% endif %}
             {% if s.pdf_url %}
             <small><a href="{{ s.pdf_url }}"><span class="label label-danger">{% trans "PDF link" %}</span></a></small>
+            {% endif %}
+            {% if s.difficulty %}
+                <small><span class="label label-success">{{ s.difficulty }}</span></small>
             {% endif %}
             {% if not s.is_breaktime and s.language == 'E' %}
                 <small><span class="label label-default">{% trans "Schedule English Label" %}</span></small>
@@ -92,7 +98,7 @@
               <div>
                 {{ s.name }}
                 {% if not s.is_recordable %}
-                  <span class="glyphicon glyphicon-eye-close"></span>
+                &nbsp;<span class="glyphicon glyphicon-eye-close"></span>
                 {% endif %}
               </div>
             </a>
@@ -106,7 +112,7 @@
             <small><a href="{{ s.pdf_url }}"><span class="label label-danger">{% trans "PDF link" %}</span></a></small>
             {% endif %}
             {% if s.difficulty %}
-              <small><span class="label label-info">{{ s.difficulty }}</span></small>
+              <small><span class="label label-success">{{ s.difficulty }}</span></small>
             {% endif %}
             {% if not s.is_breaktime and s.language == 'E' %}
               <small><span class="label label-default">{% trans "Schedule English Label" %}</span></small>
