@@ -92,7 +92,10 @@
               <div>
                 {{ s.name }}
                 {% if not s.is_recordable %}
-                  &nbsp;<span class="glyphicon glyphicon-eye-close"></span>
+                  <span class="glyphicon glyphicon-eye-close"></span>
+                {% endif %}
+                {% if program.difficulty %}
+                  <span class="badge badge-primary">{{ program.difficulty }}</span>
                 {% endif %}
               </div>
             </a>
