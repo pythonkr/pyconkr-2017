@@ -3,6 +3,10 @@
 {% load thumbnail %}
 {% load crispy_forms_tags %}
 
+{% block head-title %}{{ tutorial.title }} &mdash; {{ block.super }}{% endblock %}
+{% block og-title %}{{ tutorial.title }}{% endblock %}
+{% block og-desc %}{{ tutorial.brief }}{% endblock %}
+
 {% block title %}
 <h1>
     {{ tutorial.title }}
