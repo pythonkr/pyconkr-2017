@@ -371,10 +371,10 @@ def issue_submit(request):
         return HttpResponseBadRequest('invalid form value')
     user_id = user_data.cleaned_data['user_id']
     registration = Registration.objects.get(payment_status='paid',
-                                            user=user_id)
+                                            id=user_id)
     issue=IssueTicket(
         registration=registration,
-        issuer=User.objects.get(id=user_id)
+        issuer=request.user
     ).save()
 
     return JsonResponse({
