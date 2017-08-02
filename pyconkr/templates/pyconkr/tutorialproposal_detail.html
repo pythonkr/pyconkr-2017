@@ -3,6 +3,10 @@
 {% load thumbnail %}
 {% load crispy_forms_tags %}
 
+{% block head-title %}{{ tutorial.title }} &mdash; {{ block.super }}{% endblock %}
+{% block og-title %}{{ tutorial.title }}{% endblock %}
+{% block og-desc %}{{ tutorial.brief }}{% endblock %}
+
 {% block title %}
 <h1>
     {{ tutorial.title }}
@@ -22,7 +26,12 @@
         <span class="label label-info">{{ tutorial.get_language_display }}</span>
         <span class="label label-info">{{ tutorial.get_capacity_display }}</span>
     </p>
-    <h3>{{ tutorial.user.profile.name }} <small>{{ tutorial.user.profile.organization }}</small></h3>
+    <h3>
+        {{ tutorial.user.profile.name }}
+        {% if tutorial.user.profile.organization %}
+            <small>{{ tutorial.user.profile.organization }}</small>
+        {% endif %}
+    </h3>
     <div>
         {{ tutorial.user.profile.bio|safe }}
     </div>

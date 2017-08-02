@@ -3,6 +3,10 @@
 {% load thumbnail %}
 {% load crispy_forms_tags %}
 
+{% block head-title %}{{ sprint.title }} &mdash; {{ block.super }}{% endblock %}
+{% block og-title %}{{ sprint.title }}{% endblock %}
+{% block og-desc %}{{ sprint.project_brief }}{% endblock %}
+
 {% block title %}
 <h1>
     {{ sprint.title }}
@@ -16,7 +20,12 @@
 {% block content %}
 <div class="row proposal-detail">
     <h3>{% trans "Sprinter" %}</h3>
-    <h4>{{ sprint.user.profile.name }} <small>{{ sprint.user.profile.organization }}</small></h4>
+    <h4>
+        {{ sprint.user.profile.name }}
+        {% if sprint.user.profile.organization %}
+            <small>{{ sprint.user.profile.organization }}</small>
+        {% endif %}
+    </h4>
     <div>
         {{ sprint.user.profile.bio|safe }}
     </div>

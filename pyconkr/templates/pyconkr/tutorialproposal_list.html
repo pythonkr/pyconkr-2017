@@ -14,9 +14,6 @@
   </li>
   {% endfor %}
 </ul>
-<a href="{% url "tutorial-propose" %}" class="btn btn-primary">
-    <span class="glyphicon glyphicon-plus"></span> {% trans "Propose a tutorial" %}
-</a>
 <h2>Sprints</h2>
 <ul>
   {% for sprint in sprints %}
@@ -29,7 +26,4 @@
   </li>
   {% endfor %}
 </ul>
-<a href="{% url "sprint-propose" %}" class="btn btn-primary">
-    <span class="glyphicon glyphicon-plus"></span> {% trans "Propose a sprint" %}
-</a>
 {% endblock %}
