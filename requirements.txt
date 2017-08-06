@@ -5,7 +5,7 @@ django-allauth==0.32.0
 django-constance==2.0.0
 django-crispy-forms==1.6.1
 django-csv-exports==1.0.3
-django-dynamic-fixture==1.9.4
+django-dynamic-fixture==1.9.5
 django-jsonfield==1.0.1
 django-modeltranslation==0.12.1
 django-picklefield==0.3.2
