@@ -75,3 +75,7 @@ class ManualPaymentForm(forms.ModelForm):
             'email': _('Email'),
             'payment_method': _('Payment Method'),
         }
+
+
+class IssueSubmitForm(forms.Form):
+    user_id = forms.IntegerField()

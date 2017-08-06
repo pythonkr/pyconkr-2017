@@ -13,6 +13,12 @@
     "bootstrap-social": "~5.1.1",
     "typed.js": "~1.1.1",
     "bootstrap-side-navbar": "^1.0.1",
-    "montserrat-webfont": "^1.0.3"
+    "montserrat-webfont": "^1.0.3",
+    "datatables.net": "^1.10.15",
+    "datatables.net-bs": "^2.1.1",
+    "datatables.net-rowreorder": "^1.2.0",
+    "datatables.net-rowreorder-bs": "^1.2.0",
+    "handlebars": "^4.0.10",
+    "js-cookie": "^2.1.4"
   }
 }

@@ -96,3 +96,9 @@ ENV/
 
 # Bower
 pyconkr/static/components/*
+
+# TEST db
+db.sqlite3
+
+# macOS
+.DS_Store

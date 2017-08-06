@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.contrib.auth.models import User
-
+from django.utils import timezone
 
 class Option(models.Model):
     name = models.CharField(max_length=50)
@@ -17,7 +17,7 @@ class Option(models.Model):
 
     class Meta:
         ordering = ['price']
-    
+
     @property
     def is_soldout(self):
         return self.total <= Registration.objects.filter(option=self, payment_status__in=['paid', 'ready']).count()
@@ -80,6 +80,8 @@ class Registration(models.Model):
     confirmed = models.DateTimeField(null=True, blank=True)
     canceled = models.DateTimeField(null=True, blank=True)
 
+    def __str__(self):
+        return "{} {} {}".format(self.name, self.email, self.option.name)
 
 class ManualPayment(models.Model):
     user = models.ForeignKey(User)
@@ -113,3 +115,9 @@ class ManualPayment(models.Model):
 
     def __str__(self):
         return '({}) {} ({})원'.format(self.payment_status.upper(), self.title, self.price)
+
+
+class IssueTicket(models.Model):
+    registration = models.ForeignKey(Registration)
+    issuer = models.ForeignKey(User)
+    issue_date = models.DateTimeField(default=timezone.now)
