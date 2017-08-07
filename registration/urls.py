@@ -15,5 +15,5 @@ urlpatterns = [
     url(r'^payment/manual/payment/$', views.manual_payment_process, name='manual_payment'),
     url(r'^issue/$', views.issue, name='registration_issue'),
     url(r'^issue/submit/$', views.issue_submit, name='registration_issue_submit'),
-
+    url(r'^issue/print/(?P<registration_id>\d+)/$', views.issue_print, name='registration_issue_print'),
 ]

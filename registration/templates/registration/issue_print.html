@@ -1,0 +1,98 @@
+{% load staticfiles %}
+<html>
+  <head>
+<style>
+@page {
+  size: 90mm 29mm;
+  margin: 0cm;
+}
+@import url(http://fonts.googleapis.com/earlyaccess/jejugothic.css);
+
+.name-tag {
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+}
+.name-tag .name {
+  font-family: 'Jeju Gothic', serif;
+  font-size: 10mm;
+  position:relative;
+  top: 5mm;
+  left: 20mm;
+}
+.name-tag .org {
+  font-family: 'Jeju Gothic', serif;
+  color: gray;
+  font-size: 6mm;
+  position:relative;
+  top: 6mm;
+  left: 35mm;
+}
+
+.preview-border {
+  width: 90mm;
+  height: 28mm;
+  border: 1px solid red;
+}
+
+
+@media print {
+  .no-print {display:none}
+  .preview-border {
+    width: 90mm;
+    height: 28mm;
+    border: 1px solid white;
+    line-height:10mm;
+  }
+}
+
+</style>
+  </head>
+  <body>
+    <div class='no-print'>
+      현재 발권횟수: {{ registration.issueticket_set.count }}
+    </div>
+    <button id='ticket_issue' class='no-print'>발권</button>
+    <div class='print name-tag preview-border'>
+      <div class='name'>{{ registration.name }}</div>
+      <div class='org'>{{ registration.company }}</div>
+    </div>
+<script src="{% static "components/jquery/dist/jquery.min.js" %}"></script>
+<script src="{% static "components/js-cookie/src/js.cookie.js" %}" charset="utf-8"></script>
+<script type="text/javascript">
+function csrfSafeMethod(method) {
+  // these HTTP methods do not require CSRF protection
+  return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
+$(document).ready( function () {
+  $('#ticket_issue').click(function(){
+    window.print();
+    issueTicketConfirm({{ registration.id }});
+  });
+});
+
+function issueTicketConfirm(userId) {
+  var csrftoken = Cookies.get('csrftoken');
+  $.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+      if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+      }
+    }
+  });
+  $.ajax("{% url 'registration_issue_submit' %}", {
+    data: {'user_id': userId},
+    method: 'POST',
+    success: function(data) {
+      alert('발권처리 기록 되었습니다.');
+    },
+    error: function(data) {
+      alert('발권처리 기록에 실패 하였습니다.');
+    }
+  });
+}
+
+</script>
+  </body>
+</html>
