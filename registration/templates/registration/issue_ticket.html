@@ -19,10 +19,12 @@
         <td>{{ user.email }}</td>
     <td>
         <div class="btn-group">
-          <button type="button" class="btn btn-success btn-filter" onclick="printLabelPopup('{{ user.name }}', {{ user.id }},'{{ user.top_size }}')">발권</button>
-            <a class="btn btn-default btn-filter"
-              href='/admin/registration/registration/{{user.id}}'
-              target='_blank' role="button">관리</a>
+          <a class="btn btn-success btn-filter"
+             target='_blank' role="button"
+             href='{% url "registration_issue_print" user.id %}'>발권</a>
+          <a class="btn btn-default btn-filter"
+            href='/admin/registration/registration/{{user.id}}'
+            target='_blank' role="button">관리</a>
         </div>
     </td>
     </tr>
@@ -41,40 +43,6 @@
 <script src="{% static "components/datatables.net/js/jquery.dataTables.min.js" %}" charset="utf-8"></script>
 <script src="{% static "components/datatables.net-bs/js/dataTables.bootstrap.min.js" %}" charset="utf-8"></script>
 
-{% verbatim %}
-<script id="print_template" type="text/x-handlebars-template">
-<div class="ui brother-label">
-    <p class="ui name">{{name}}</p>
-</div>
-<div class="ui brother-label">
-    <p class="ui name">{{topSize}}</p>
-</div>
-<style>
-.brother-label {
-  margin: 0 auto;
-  padding: 0 auto;
-  width: 88mm;
-  height: 27mm;
-}
-.name{
-  font-size: {{fontSize}};
-  font-weight: bold;
-  text-align: center;
-  letter-spacing: 1rem;
-}
-@media print {
-  body, html, p{
-    margin: 0mm !important;
-    padding: 0mm !important;
-  }
-  @page{
-    margin: 0mm !important;
-    padding: 0mm !important;
-  }
-}
-</script>
-{% endverbatim %}
-
 <script type="text/javascript">
 $(document).ready( function () {
   $('#issue-ticket').DataTable({
@@ -86,45 +54,6 @@ $(document).ready( function () {
     searching: true,
   });
 });
-
-function issueTicketConfirm(userId) {
-  var csrftoken = Cookies.get('csrftoken');
-  $.ajaxSetup({
-    beforeSend: function(xhr, settings) {
-      if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-        xhr.setRequestHeader("X-CSRFToken", csrftoken);
-      }
-    }
-  });
-  $.ajax("{% url 'registration_issue_submit' %}", {
-    data: {'user_id': userId},
-    method: 'POST',
-    success: function(data) {
-      alert('발권처리 기록 되었습니다.');
-    },
-    error: function(data) {
-      alert('발권처리 기록에 실패 하였습니다.');
-    }
-  });
-}
-
-function printLabelPopup(name, userId, topSize) {
-  var printWindow = window.open('', '', 'width=600, height=400');
-  var fontSize = '1em';
-  var printTemplateScript = $('#print_template').html();
-  var printTemplate = Handlebars.compile(printTemplateScript);
-  var context = {
-    'name': name,
-    'topSize': topSize,
-    'fontSize': fontSize
-  };
-  printWindow.document.write(printTemplate(context));
-  printWindow.document.close();
-  printWindow.focus();
-  printWindow.print();
-  printWindow.close();
-  issueTicketConfirm(userId);
-}
 </script>
 
 {% endblock %}

@@ -362,6 +362,14 @@ def issue(request):
     }
     return render(request, 'registration/issue_ticket.html', context)
 
+@group_required('admin', 'organizer', 'volunteer')
+def issue_print(request, registration_id):
+    registration = get_object_or_404(Registration, id=registration_id)
+    context = {
+        'registration': registration,
+        'title': _("Ticket Print"),
+    }
+    return render(request, 'registration/issue_print.html', context)
 
 @group_required('admin', 'organizer', 'volunteer')
 @require_http_methods(["POST"])
