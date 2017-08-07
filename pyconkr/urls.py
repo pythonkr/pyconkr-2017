@@ -45,7 +45,7 @@ urlpatterns += i18n_patterns(
         SponsorList.as_view(), name='sponsors'),
     url(r'^about/patron/$',
         PatronList.as_view(), name='patrons'),
-    url(r'^about/sponsor/(?P<slug>\S+)$',
+    url(r'^about/sponsor/(?P<slug>[\w|-]+)$',
         SponsorDetail.as_view(), name='sponsor'),
     url(r'^programs?/list/$',
         ProgramList.as_view(), name='programs'),
