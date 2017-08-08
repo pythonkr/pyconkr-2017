@@ -27,7 +27,7 @@
                     &nbsp;<span class="glyphicon glyphicon-eye-close"></span>
                 {% endif %}
             </a>
-            {% if s.slide_url %}
+            {% if slide_enable and s.slide_url %}
             <small><a href="{{ s.slide_url }}"><span class="label label-slides">{% trans "Slides link" %}</span></a></small>
             {% endif %}
             {% if s.video_url %}
@@ -64,7 +64,7 @@
                     &nbsp;<span class="glyphicon glyphicon-eye-close"></span>
                 {% endif %}
             </a>
-            {% if s.slide_url %}
+            {% if slide_enable and s.slide_url %}
                 <small><a href="{{ s.slide_url }}"><span class="label label-slides">{% trans "Slides link" %}</span></a></small>
             {% endif %}
             {% if s.video_url %}
@@ -130,7 +130,7 @@
                 {% endif %}
               </div>
             </a>
-            {% if s.slide_url %}
+            {% if slide_enable and s.slide_url %}
             <small><a href="{{ s.slide_url }}"><span class="label label-slides">{% trans "Slides link" %}</span></a></small>
             {% endif %}
             {% if s.video_url %}
