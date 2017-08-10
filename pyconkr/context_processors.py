@@ -55,7 +55,6 @@ def default(request):
             'submenu': OrderedDict([
                 ('map', {'title': _('Venue Map')}),
                 ('transportation', {'title': _('Transportation')}),
-                ('restaurants', {'title': _('Restaurants')}),
             ]),
         }),
         ('cfp', {
