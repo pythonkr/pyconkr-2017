@@ -16,9 +16,9 @@
   {% for program in obj.program_set.all %}
   <li>
     <a href="{{ program.get_absolute_url }}">{{ program.name }}</a>
-    {% if program.slide_url %}
-    <small><a href="{{ program.slide_url }}"><span class="label label-primary">{% trans "Slides link" %}</span></a></small>
-    {% endif %}
+{#    {% if program.slide_url %}#}
+{#    <small><a href="{{ program.slide_url }}"><span class="label label-primary">{% trans "Slides link" %}</span></a></small>#}
+{#    {% endif %}#}
     {% if program.video_url %}
     <small><a href="{{ program.video_url }}"><span class="label label-info">{% trans "Video link" %}</span></a></small>
     {% endif %}
