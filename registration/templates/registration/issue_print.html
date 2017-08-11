@@ -17,13 +17,14 @@
 .name-tag .name {
   font-family: 'Jeju Gothic', serif;
   position:relative;
-  top: 5mm;
+  font-size: 9mm;
+  top: 1mm;
   text-align: center;
 }
 .name-tag .org {
   font-family: 'Jeju Gothic', serif;
   color: gray;
-  font-size: 6mm;
+  font-size: 7mm;
   position:relative;
   top: 3mm;
   text-align: center;
@@ -31,7 +32,7 @@
 
 .preview-border {
   width: 90mm;
-  height: 28mm;
+  height: 37mm;
   border: 1px solid red;
 }
 
@@ -104,10 +105,10 @@ $(document).ready( function () {
     window.print();
     issueTicketConfirm({{ registration.id }});
   });
-  $('.name').quickfit({
-    min: 5,
-    max: 30
-  });
+  //$('.name').quickfit({
+  //  min: 13,
+  //  max: 30
+  //});
 });
 
 function issueTicketConfirm(userId) {
