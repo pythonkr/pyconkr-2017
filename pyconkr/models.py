@@ -10,7 +10,7 @@ from django.utils.translation import ugettext_lazy as _
 from sorl.thumbnail import ImageField as SorlImageField
 from jsonfield import JSONField
 from uuid import uuid4
-
+from constance import config
 
 class Room(models.Model):
     name = models.CharField(max_length=100)
@@ -184,6 +184,17 @@ class Program(models.Model):
             return ''
 
         return ', '.join([_.name for _ in self.rooms.all()])
+
+    def get_slide_url_by_begin_time(self):
+        from datetime import datetime
+
+        if not config.SHOW_SLIDE_DATA:
+            return None
+
+        if datetime.now().date() > self.times[0].day and datetime.now().time() > self.time[0].begin:
+            return self.slide_url
+        else:
+            return None
 
     def begin_time(self):
         return self.times.all()[0].begin.strftime("%H:%M")

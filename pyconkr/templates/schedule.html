@@ -27,8 +27,8 @@
                     &nbsp;<span class="glyphicon glyphicon-eye-close"></span>
                 {% endif %}
             </a>
-            {% if slide_enable and s.slide_url %}
-            <small><a href="{{ s.slide_url }}"><span class="label label-slides">{% trans "Slides link" %}</span></a></small>
+            {% if s.get_slide_url_by_begin_time %}
+            <small><a href="{{ s.get_slide_url_by_begin_time }}"><span class="label label-slides">{% trans "Slides link" %}</span></a></small>
             {% endif %}
             {% if s.video_url %}
             <small><a href="{{ s.video_url }}"><span class="label label-vidieo">{% trans "Video link" %}</span></a></small>
@@ -64,8 +64,8 @@
                     &nbsp;<span class="glyphicon glyphicon-eye-close"></span>
                 {% endif %}
             </a>
-            {% if slide_enable and s.slide_url %}
-                <small><a href="{{ s.slide_url }}"><span class="label label-slides">{% trans "Slides link" %}</span></a></small>
+            {% if s.get_slide_url_by_begin_time %}
+                <small><a href="{{ s.get_slide_url_by_begin_time }}"><span class="label label-slides">{% trans "Slides link" %}</span></a></small>
             {% endif %}
             {% if s.video_url %}
                 <small><a href="{{ s.video_url }}"><span class="label label-vidieo">{% trans "Video link" %}</span></a></small>
@@ -130,8 +130,8 @@
                 {% endif %}
               </div>
             </a>
-            {% if slide_enable and s.slide_url %}
-            <small><a href="{{ s.slide_url }}"><span class="label label-slides">{% trans "Slides link" %}</span></a></small>
+            {% if s.get_slide_url_by_begin_time %}
+            <small><a href="{{ s.get_slide_url_by_begin_time }}"><span class="label label-slides">{% trans "Slides link" %}</span></a></small>
             {% endif %}
             {% if s.video_url %}
             <small><a href="{{ s.video_url }}"><span class="label label-video">{% trans "Video link" %}</span></a></small>

@@ -57,9 +57,9 @@
   {% endif %}
   </li>
 </ul>
-{% if slide_enable and program.slide_url %}
+{% if program.get_slide_url_by_begin_time %}
 <h3>{% trans "Slide" %}</h3>
-{{ program.slide_url|urlize }}
+{{ program.get_slide_url_by_begin_time|urlize }}
 {% endif %}
 {% if program.video_url %}
 <h3>{% trans "Video" %}</h3>
