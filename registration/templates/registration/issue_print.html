@@ -35,6 +35,32 @@
   border: 1px solid red;
 }
 
+.btn {
+  background: #3498db;
+  background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+  background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+  background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+  background-image: -o-linear-gradient(top, #3498db, #2980b9);
+  background-image: linear-gradient(to bottom, #3498db, #2980b9);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
+}
 
 @media print {
   .no-print {display:none}
@@ -50,12 +76,20 @@
   </head>
   <body>
     <div class='no-print'>
-      현재 발권횟수: {{ registration.issueticket_set.count }}
+      <div>
+        현재 발권횟수: {{ registration.issueticket_set.count }}
+      </div>
+      <div>
+        <ul>
+          <li>결제시 이름: {{ registration.name }}</li>
+          <li>프로필 이름: {{ registration.user.profile.name }}</li>
+        </ul>
+      </div>
+      <button id='ticket_issue' class='btn'>발권</button>
     </div>
-    <button id='ticket_issue' class='no-print'>발권</button>
     <div class='print name-tag preview-border'>
-      <div class='name'>{{ registration.name }}</div>
-      <div class='org'>{{ registration.company }}</div>
+      <div class='name'>{{ name }}</div>
+      <div class='org'>{{ company }}</div>
     </div>
 <script src="{% static "components/jquery/dist/jquery.min.js" %}"></script>
 <script src="{% static "components/js-cookie/src/js.cookie.js" %}" charset="utf-8"></script>
