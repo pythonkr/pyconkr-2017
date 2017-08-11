@@ -238,4 +238,5 @@ CONSTANCE_CONFIG = {
         'IMP_USER_CODE': ('', 'iamport user code'),
         'IMP_API_KEY': ('', 'iamport api key'),
         'IMP_API_SECRET': ('', 'iamport api secret'),
+        'SHOW_SLIDE_DATA': (False, 'Show slide data on schedule table and program detail'),
 }
