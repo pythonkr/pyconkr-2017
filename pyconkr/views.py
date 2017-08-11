@@ -71,7 +71,6 @@ def schedule(request):
         'narrow': narrow,
         'rooms': rooms,
         'width': 100.0 / max(len(rooms), 1),
-        'slide_enable': config.SHOW_SLIDE_DATA
     }
     return render(request, 'schedule.html', contexts)
 
@@ -143,9 +142,6 @@ class ProgramDetail(DetailView):
             for speaker in self.object.speakers.all():
                 if self.request.user.email == speaker.email:
                     context['editable'] = True
-
-        if config.SHOW_SLIDE_DATA:
-            context['slide_enable'] = True
 
         return context
 
