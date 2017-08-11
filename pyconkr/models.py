@@ -191,7 +191,12 @@ class Program(models.Model):
         if not config.SHOW_SLIDE_DATA:
             return None
 
-        if datetime.now().date() > self.times[0].day.day and datetime.now().time() > self.time[0].begin:
+        time = self.times.first()
+
+        if not time:
+            return None
+
+        if datetime.now().date() > time.day.day and datetime.now().time() > time.begin:
             return self.slide_url
         else:
             return None
