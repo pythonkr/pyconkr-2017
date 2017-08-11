@@ -21,8 +21,12 @@
                     <a href="{% url 'profile_edit' %}"><i class="fa fa-pencil-square-o"></i></a>
                 </h3>
 
-                <h4>{{ profile.organization }}</h4>
-                <p>{{ profile.phone }}</p>
+                {% if profile.organization %}
+                  <h4>{{ profile.organization }}</h4>
+                {% endif %}
+                {% if profile.phone %}
+                  <p>{{ profile.phone }}</p>
+                {% endif %}
                 <div>{{ profile.bio|safe }}</div>
             </div>
         </div>
