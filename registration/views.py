@@ -365,7 +365,14 @@ def issue(request):
 @group_required('admin', 'organizer', 'volunteer')
 def issue_print(request, registration_id):
     registration = get_object_or_404(Registration, id=registration_id)
+    name = registration.user.profile.name if registration.user.profile.name != ''\
+            else registration.name
+    company = registration.user.profile.organization if \
+            registration.user.profile.organization != '' else registration.company
+    company = '' if company == None else company
     context = {
+        'name': name,
+        'company': company,
         'registration': registration,
         'title': _("Ticket Print"),
     }

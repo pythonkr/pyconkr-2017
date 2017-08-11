@@ -22,6 +22,7 @@ from .models import (Room, Program, ProgramDate, ProgramTime, ProgramCategory,
                      SprintProposal, EmailToken, Profile, Proposal, TutorialCheckin,
                      SprintCheckin)
 from registration.models import Registration, Option
+from constance import config
 
 logger = logging.getLogger(__name__)
 payment_logger = logging.getLogger('payment')
@@ -53,6 +54,7 @@ def schedule(request):
             narrow[d][t] = []
             for r in rooms:
                 s = Program.objects.filter(date=d, times=t, rooms=r)
+
                 if s:
                     if s[0].times.all()[0] == t and s[0].id not in processed:
                         wide[d][t][r] = s[0]
@@ -136,7 +138,6 @@ class ProgramDetail(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(ProgramDetail, self).get_context_data(**kwargs)
-
         if self.request.user.is_authenticated():
             for speaker in self.object.speakers.all():
                 if self.request.user.email == speaker.email:
