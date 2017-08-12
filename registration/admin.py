@@ -124,6 +124,7 @@ admin.site.register(Registration, RegistrationAdmin)
 class IssueTicketAdmin(admin.ModelAdmin):
     list_display = ('registration', 'issuer', 'issue_date')
     ordering = ('issue_date',)
+    search_fields = ('registration__name', 'registration__email', 'issuer__username', )
 admin.site.register(IssueTicket, IssueTicketAdmin)
 
 class ManualPaymentAdmin(admin.ModelAdmin):
