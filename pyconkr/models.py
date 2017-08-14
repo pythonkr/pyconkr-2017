@@ -196,7 +196,9 @@ class Program(models.Model):
         if not time:
             return None
 
-        if datetime.now().date() >= time.day.day and datetime.now().time() >= time.begin:
+        opendate = datetime(year=time.day.day.year, month=time.day.day.month, day=time.day.day.day, hour=time.begin.hour,
+                            minute=time.begin.minute)
+        if datetime.now() >= opendate:
             return self.slide_url
         else:
             return None
