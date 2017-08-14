@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 import datetime
+import pytz
+
 import json
 import logging
 from uuid import uuid4
@@ -57,6 +59,36 @@ def status(request):
         'title': _("Registration Status"),
     }
     return render(request, 'registration/status.html', context)
+
+
+@login_required
+def certificates(request):
+    registered = Registration.objects.filter(user=request.user,
+                                             payment_status='paid').exists()
+    context = {
+        'user': request.user
+    }
+    if not registered:
+        # Not Registered
+        return render(request, 'registration/certificates_not_registered.html', context)
+
+    registration = Registration.objects.filter(user=request.user,
+                                               payment_status='paid').first()
+
+    visited = IssueTicket.objects.filter(registration=registration).exists()
+    if not visited:
+        # Not Visited
+        return render(request, 'registration/certificates_not_visited.html', context)
+
+    current_date = datetime.datetime.now()
+    seoul_date = current_date.astimezone(pytz.timezone('Asia/Seoul'))
+    context = {
+        'registration': registration,
+        'year': seoul_date.year,
+        'month': seoul_date.month,
+        'day': seoul_date.day
+    }
+    return render(request, 'registration/certificates.html', context)
 
 
 @login_required

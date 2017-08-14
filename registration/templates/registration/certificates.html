@@ -1,0 +1,78 @@
+{% load staticfiles %}
+<html>
+<head>
+    <style>
+        @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+
+        @page {
+            size: 210mm 297mm;
+            margin: 25mm 27mm;
+        }
+
+        img {
+            width: 100px;
+            height: 100px;
+        }
+
+        #title {
+            text-align: center;
+        }
+
+        #issue_date {
+            text-align: center;
+        }
+
+        #president {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+<div id="wrap">
+    <h1 id="title">참석 확인증<br>(Confirmation of the attendance)</h1>
+
+    <br>
+
+    <h2>
+        <p>
+            성 명 (Name) : {{ registration.name }}<br>
+            소 속 (Organization) : {{ registration.company }}
+        </p>
+    </h2>
+
+    <br><br>
+
+    <p>
+        위 사람은 파이콘 한국에서 주최하는 파이콘 한국 2017에 참가하였음을 확인합니다.<br>
+        This is to certify that the above-mentioned person has visited the conference for 2 days at PyCon Korea 2017
+    </p>
+
+    <br><br>
+
+    <h4>
+        <p>
+            1. 일시 (Date) : <span>2017년 8월 12일, 13일<br>(August 12th and 13th, 2017)</span>
+            <br><br>
+            2. 장소 (Venue) : <span>서울특별시 강남구 영동대로 513 코엑스<br>(COEX, Yeongdong-daero 513, Gangnam-gu, Seoul)</span>
+            <br><br>
+            3. 주최 (Hosted by) : <span>파이콘 한국 준비위원회<br>(PyCon Korea Committee)</span>
+        </p>
+    </h4>
+
+    <br><br>
+
+    <h3 id="issue_date"> {{ year }}. {{ month }}. {{ day }}</h3>
+
+    <h3>
+        <p id="president">
+            사단법인 파이썬사용자모임 대표 배권한<br>(Kwon-Han Bae, President of Python User Group)<br><img
+                src="{% static 'stamp.jpg' %}">
+        </p>
+    </h3>
+</div>
+
+<script src="{% static "components/jquery/dist/jquery.min.js" %}"></script>
+<script src="{% static "components/js-cookie/src/js.cookie.js" %}" charset="utf-8"></script>
+</body>
+</html>
