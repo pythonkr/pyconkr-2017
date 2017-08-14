@@ -3,12 +3,11 @@
 
 {% block content %}
     <div>
-
         {% if is_registered %}
             <div>
                 <p>이미 등록되었습니다.</p>
                 <p>
-                    <a href='{% url 'registration_status' %}'>등록 확인하기</a>
+                    <p>{% trans "Thank you for registration." %} <a href="{% url 'registration_status' %}">{% trans "Check Registration Status" %}</a> / <a href="{% url 'registration_receipt' %}">{% trans "Check Registration Receipt" %}</a> / <a href="{%  url 'certificates' %}">참석 확인증 출력</a></p>
                 </p>
             </div>
         {% else %}
